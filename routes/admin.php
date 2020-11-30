@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+], function()
 {
 	/** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     
@@ -16,12 +18,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 			Route::post('/login', 'LoginController@login_admin')->name('loginPost');
 		});
 
+		// settings routes
 		Route::group(['prefix' => 'settings'], function() {
 			// login routs
 			Route::get('/shipping/{type}', 'ShippingController@editShipping')->name('settings.editShipping');
 		});
-
-
 	
 		// routs Authenticate admin
 		Route::group(['middleware' => 'auth:admin'], function() {
