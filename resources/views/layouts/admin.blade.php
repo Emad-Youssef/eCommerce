@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="rtl">
+<html class="loading" lang="{{app()->getLocale()}}" data-textdirection="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,41 +17,41 @@
         rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
           rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/icheck/icheck.css')}}"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/icheck/custom.css')}}"> -->
 
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/plugins/animate/animate.css')}}">
+    @if(app()->getLocale() == 'ar')
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/vendors.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/weather-icons/climacons.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/fonts/meteocons/style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/charts/morris.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/charts/chartist.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/selects/select2.min.css')}}">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('assets/admin/vendors/css/charts/chartist-plugin-tooltip.css')}}">
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('assets/admin/vendors/css/forms/toggle/bootstrap-switch.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/toggle/switchery.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/pages/chat-application.css')}}">
     <!-- END VENDOR CSS-->
     <!-- BEGIN MODERN CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/app.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/custom-rtl.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/css-rtl/custom-rtl.css">
     <!-- END MODERN CSS-->
     <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css"
-          href="{{asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/colors/palette-gradient.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/fonts/simple-line-icons/style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/colors/palette-gradient.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/pages/timeline.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/datedropper.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/timedropper.min.css')}}">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/custom-rtl.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/assets/css/style-rtl.css')}}">
     <!-- END Custom CSS-->
+    @else
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/vendors.css')}}">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN MODERN CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/app.css')}}">
+    <!-- END MODERN CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/core/menu/menu-types/vertical-menu.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/core/colors/palette-gradient.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/assets/css/style.css')}}">
+    <!-- END Custom CSS-->
+    @endif
     {{-- @notify_css --}}
     @stack('style')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
@@ -82,24 +82,9 @@
 <script src="{{asset('assets/admin/vendors/js/tables/datatable/dataTables.buttons.min.js')}}"
         type="text/javascript"></script>
 
-<script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-switch.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-checkbox.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/forms/toggle/switchery.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/scripts/forms/switch.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/forms/select/select2.full.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/scripts/forms/select/form-select2.js')}}" type="text/javascript"></script>
-
 <!-- BEGIN PAGE VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/charts/chart.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/charts/echarts/echarts.js')}}" type="text/javascript"></script>
-
-<script src="{{asset('assets/admin/vendors/js/extensions/datedropper.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/extensions/timedropper.min.js')}}" type="text/javascript"></script>
-
-<script src="{{asset('assets/admin/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/scripts/pages/chat-application.js')}}" type="text/javascript"></script>
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN MODERN JS-->
 <script src="{{asset('assets/admin/js/core/app-menu.js')}}" type="text/javascript"></script>
@@ -108,64 +93,13 @@
 <!-- END MODERN JS-->
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{asset('assets/admin/js/scripts/pages/dashboard-crypto.js')}}" type="text/javascript"></script>
-
-
-<script src="{{asset('assets/admin/js/scripts/tables/datatables/datatable-basic.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('assets/admin/js/scripts/extensions/date-time-dropper.js')}}" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
+<script src="{{asset('assets/admin/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
 
-<script src="{{asset('assets/admin/js/scripts/forms/checkbox-radio.js')}}" type="text/javascript"></script>
+<!-- <script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-checkbox.min.js')}}"
+        type="text/javascript"></script> -->
+<!-- <script src="{{asset('assets/admin/js/scripts/forms/checkbox-radio.js')}}" type="text/javascript"></script> -->
 
-<script src="{{asset('assets/admin/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script>
-
-<script>
-    $('#meridians1').timeDropper({
-        meridians: true,
-        setCurrentTime: false
-    });
-    $('#meridians2').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians3').timeDropper({
-        meridians: true,
-        setCurrentTime: false
-    });
-    $('#meridians4').timeDropper({
-        meridians: true,
-        setCurrentTime: false
-    });
-    $('#meridians5').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians6').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians7').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians8').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians9').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians10').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians11').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians12').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians13').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-    $('#meridians14').timeDropper({
-        meridians: true,setCurrentTime: false
-    });
-</script>
 @stack('script')
 </body>
 </html>

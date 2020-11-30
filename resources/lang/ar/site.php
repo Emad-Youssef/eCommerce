@@ -19,7 +19,14 @@ return [
     'homepage'  =>'الرئيسية',
     'login'     => 'تسجيل الدخول',
     'login_to_adminpanel' => 'الدخول الي لوحة التحكم',
+    // new 
+    'settings'  => 'الأعدادات',
+    'shipping'  => 'الشحن',
+    'free_shipping'  => 'الشحن المجاني',
+    'local_shipping'  => 'الشحن الداخلي',
+    'outer_shipping'  => 'الشحن الخارجي',
 
+    // datatables
     'edit'                  => 'تعديل',
     'delete'                => 'حذف',
     'create'                => 'أضافة',
