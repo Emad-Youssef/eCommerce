@@ -13,18 +13,24 @@ return [
     |
     */
 
+    'adminPanel' => 'لوحة التحكم',
     'languages' => 'اللغات',
     'show_all'  => 'عرض الكل',
     'add_new'   => 'أضف جديد',
     'homepage'  =>'الرئيسية',
     'login'     => 'تسجيل الدخول',
     'login_to_adminpanel' => 'الدخول الي لوحة التحكم',
-    // new 
+    // shipping 
     'settings'  => 'الأعدادات',
     'shipping'  => 'الشحن',
     'free_shipping'  => 'الشحن المجاني',
     'local_shipping'  => 'الشحن الداخلي',
     'outer_shipping'  => 'الشحن الخارجي',
+    'name_en'         => 'الأسم انجليزي',
+    'name_ar'         => 'الأسم عربي',
+    'value'           => 'القيمة',
+    'retreat'   => 'تراجع',
+    'save'      => 'حفظ',
 
     // datatables
     'edit'                  => 'تعديل',

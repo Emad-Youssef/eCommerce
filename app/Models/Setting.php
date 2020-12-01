@@ -12,6 +12,10 @@ class Setting extends Model implements TranslatableContract
     public $translatedAttributes = ['value'];
     protected $fillable = ['key', 'is_translatable', 'plain_value'];
 
+    protected $casts = [
+        'is_translatable' => 'boolean'
+    ];
+
     // start Related seeder methods
     public static function setMany($settings)
     {

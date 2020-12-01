@@ -22,6 +22,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 		Route::group(['prefix' => 'settings'], function() {
 			// login routs
 			Route::get('/shipping/{type}', 'ShippingController@editShipping')->name('settings.editShipping');
+			Route::post('/update-shipping/{id}', 'ShippingController@updateShipping')->name('settings.updateShipping');
 		});
 	
 		// routs Authenticate admin
