@@ -2,6 +2,7 @@
 
 use App\Models\Setting;
 use Illuminate\Database\Seeder;
+use App\Models\SettingTranslation;
 
 class SettingTableSeeder extends Seeder
 {
@@ -25,11 +26,38 @@ class SettingTableSeeder extends Seeder
             'outer_shipping_cost' => 0,
             'free_shipping_cost' => 0,
             'translatable' => [
-                'store_name'    => 'Elfoly Store',
-                'local_shipping_lable' => 'Local Shipping',
-                'outer_shipping_lable' => 'Outer Shipping',
-                'free_shipping_lable' => 'Free Shipping'
+                'store_name'    => 'الفولي',
+                'local_shipping_lable' => 'شحن داخلي',
+                'outer_shipping_lable' => 'شحن خارجي',
+                'free_shipping_lable' => 'شحن مجاني'
             ]
         ]);
+
+        $freeMethod = Setting::where('key','free_shipping_lable')->first();
+        $outerMethod = Setting::where('key','outer_shipping_lable')->first();
+        $localMethod = Setting::where('key','local_shipping_lable')->first();
+
+        
+        foreach(config('translatable.locales') as $locale){
+            if(app()->getLocale() !== $locale){
+                SettingTranslation::create([
+                    'setting_id' => $freeMethod->id,
+                    'locale'     => $locale,
+                    'value'      => 'free value for edit',
+                ]);
+
+                SettingTranslation::create([
+                    'setting_id' => $outerMethod->id,
+                    'locale'     => $locale,
+                    'value'      => 'outer value for edit',
+                ]);
+
+                SettingTranslation::create([
+                    'setting_id' => $localMethod->id,
+                    'locale'     => $locale,
+                    'value'      => 'local value for edit',
+                ]);
+            } 
+        }
     }
 }

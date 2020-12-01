@@ -1,5 +1,15 @@
 @extends('layouts.admin')
 @section('title', $title)
+@push('style')
+    <style>
+        .has_error{
+            border: 1px solid red !important;
+        }
+        #arvalue {
+            direction: rtl;
+        }
+    </style>
+@endpush
 @section('content')
 <div class="app-content content">
     <div class="content-wrapper">
@@ -39,61 +49,61 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <form id="form-ajax" class="form" data-action="" method="POST"
+                                    @include('dashboard.includes.alerts.success')
+                                    @include('dashboard.includes.alerts.error')
+                                    <form id="form-ajax" class="form" data-action="{{ route('admin.settings.updateShipping',$shippingMethod->id ) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-body">
                                             <h4 class="form-section"><i class="ft-home"></i>{{__('site.edit')}} -
                                                 {{ $title }}</h4>
-
                                             <div class="row">
+                                                <!-- get languages from translatable -->
+                                                @foreach(config('translatable.locales') as $locale)
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="projectinput1"> اسم اللغة </label>
-                                                        <p id="error-name" class="error-content"></p>
-                                                        <input type="text" value="{{isset($edit)?$lang->name:''}}"
-                                                            id="name" class="form-control border-msg" name="name">
-                                                        <span class="text-danger"> </span>
+                                                        <label for="projectinput1">@lang('site.name_'.$locale)</label>
+                                                        <p id="error-{{$locale}}value" class="error-content text-danger"></p>
+                                                        <input type="text" value="{{ $shippingMethod->translate($locale)->value }}"
+                                                            id="{{$locale}}value" class="form-control border-msg" name="{{$locale}}[value]" required>
                                                     </div>
-
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="projectinput1"> الاختصار </label>
-                                                        <p id="error-abbr" class="error-content"></p>
-                                                        <input type="text" value="{{isset($edit)?$lang->abbr:''}}"
-                                                            id="abbr" class="form-control border-msg" name="abbr">
-                                                        <span class="text-danger"> </span>
-                                                    </div>
-                                                    @error('abbr')
-                                                    {{$message}}
-                                                    @enderror
-                                                </div>
+                                                @endforeach
                                             </div>
 
                                             <div class="row">
+
                                                 <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">@lang('site.value')</label>
+                                                        <p id="error-plain_value" class="error-content text-danger"></p>
+                                                        <input type="number" value="{{ $shippingMethod->plain_value }}"
+                                                            id="plain_value" class="form-control border-msg" name="plain_value">
+                                                    </div>
+                                                </div>
+
+                                                <!-- <div class="col-md-6">
                                                     <div class="form-group mt-1">
 
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" checked
+                                                            <input type="checkbox" class="custom-control-input"
                                                                 name="customCheck" id="customCheck2">
                                                             <label class="custom-control-label"
                                                                 for="customCheck2">Custom</label>
                                                         </div>
 
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
 
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                 onclick="history.back();">
-                                                <i class="ft-x"></i> تراجع
+                                                <i class="ft-x"></i> @lang('site.retreat')
                                             </button>
-                                            <button type="submit" disabled="disabled" class="btn btn-primary mr-1">
-                                                <i class="la la-check-square-o"></i> حفظ
+                                            <button type="submit" class="btn btn-primary mr-1">
+                                                <i class="la la-check-square-o"></i> @lang('site.save')
                                             </button>
                                         </div>
                                     </form>
@@ -110,3 +120,7 @@
 </div>
 
 @endsection
+
+@push('script')
+<script src="{{asset('assets/admin/js/form_ajax.js')}}"></script>
+@endpush

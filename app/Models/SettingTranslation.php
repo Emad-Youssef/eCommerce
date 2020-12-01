@@ -8,5 +8,5 @@ class SettingTranslation extends Model
 {
     
     public $timestamps = false;
-    protected $fillable = ['value'];
+    protected $fillable = ['setting_id','locale','value'];
 }

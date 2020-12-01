@@ -13,11 +13,25 @@ return [
     |
     */
 
+    'adminPanel' => 'Dashboard',
     'languages' => 'Languages',
     'show_all'  => 'Show All',
     'add_new'   => 'Add New',
     'homepage'  => 'Homepage',
     'login'     => 'Login',
-    'login_to_adminpanel' => 'Login to admin panel'
+    'login_to_adminpanel' => 'Login to admin panel',
+    'edit'      => 'Edit',
+    'retreat'   => 'Retreat',
+    'save'      => 'Save',
+
+    // shipping 
+    'settings'  => 'Settings',
+    'shipping'  => 'Shipping',
+    'free_shipping'  => 'Free Shipping',
+    'local_shipping'  => 'Local Shipping',
+    'outer_shipping'  => 'Outer Shipping',
+    'name_en'         => 'Name Engish',
+    'name_ar'         => 'Name Arabic',
+    'value'           => 'Value',
 
 ];
