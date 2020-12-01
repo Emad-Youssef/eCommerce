@@ -20,6 +20,12 @@ return [
     'homepage'  =>'الرئيسية',
     'login'     => 'تسجيل الدخول',
     'login_to_adminpanel' => 'الدخول الي لوحة التحكم',
+    'edit_profile'  => 'تعديل الملف الشخصي',
+    'personal_info' => 'المعلومات الشخصية',
+    'name'  => 'الأسم',
+    'email'  => 'البريد الالكتروني',
+    'password'  => 'كلمة المرور',
+    'password_confirmation'  => 'تأكيد كلمة المرور',
     // shipping 
     'settings'  => 'الأعدادات',
     'shipping'  => 'الشحن',

@@ -17,13 +17,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 			Route::get('/login', 'LoginController@login')->name('login');
 			Route::post('/login', 'LoginController@login_admin')->name('loginPost');
 		});
-
-		// settings routes
-		Route::group(['prefix' => 'settings'], function() {
-			// login routs
-			Route::get('/shipping/{type}', 'ShippingController@editShipping')->name('settings.editShipping');
-			Route::post('/update-shipping/{id}', 'ShippingController@updateShipping')->name('settings.updateShipping');
-		});
 	
 		// routs Authenticate admin
 		Route::group(['middleware' => 'auth:admin'], function() {
@@ -32,7 +25,19 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 			 Route::post('/logout', 'LoginController@logout')->name('logout');
 	
 			// dashboard home page
-			Route::get('/home', 'DashboardController@index')->name('home');
+			Route::get('/', 'DashboardController@index')->name('home');
+
+			
+			// admins routes
+			Route::get('/profile', 'ProfileAdminController@index')->name('profile');
+			Route::post('/updateProfile', 'ProfileAdminController@update')->name('profile_update');
+
+			// settings routes
+			Route::group(['prefix' => 'settings'], function() {
+				// shipping routs
+				Route::get('/shipping/{type}', 'ShippingController@editShipping')->name('settings.editShipping');
+				Route::post('/update-shipping/{id}', 'ShippingController@updateShipping')->name('settings.updateShipping');
+			});
 		});
 		
 	

@@ -20,9 +20,15 @@ return [
     'homepage'  => 'Homepage',
     'login'     => 'Login',
     'login_to_adminpanel' => 'Login to admin panel',
+    'edit_profile'  => 'Edit Profile',
     'edit'      => 'Edit',
     'retreat'   => 'Retreat',
     'save'      => 'Save',
+    'personal_info' => 'Personal Info',
+    'name'  => 'Name',
+    'email'  => 'Email',
+    'password'  => 'Password',
+    'password_confirmation'  => 'Password Confirmation',
 
     // shipping 
     'settings'  => 'Settings',
