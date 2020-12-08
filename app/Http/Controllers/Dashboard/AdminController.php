@@ -49,9 +49,7 @@ class AdminController extends Controller
     public function store(StoreAdmin $request)
     {
         try {
-            $id= auth('admin')->user()->id;
-            $admin = Admin::find($id);
-            $admin->create([
+            Admin::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
