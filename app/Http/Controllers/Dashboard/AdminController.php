@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\DataTables\AdminDatatables;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAdmin;
+use App\Http\Requests\Admin\UpdateAdmin;
 
 class AdminController extends Controller
 {
@@ -83,7 +84,13 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = __('site.edit_admin');
+        $admin = Admin::find($id);
+        if(!$admin){
+            session()->flash('error', __('messages.this_item_does_not_exist'));
+            return back();
+        }
+        return view($this->model_view_folder.'.edit', compact('title','admin'));
     }
 
     /**
@@ -93,9 +100,22 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAdmin $request, $id)
     {
-        //
+        try {
+            $admin = Admin::find($id);
+            $admin->update([
+                'name' => $request->name,
+                'email' => $request->email
+            ]);
+            session()->flash('success', __('messages.updateed_successfully'));
+            return response()->json([
+                'route' => route('admin.admins.index')
+            ]);
+
+        }catch (\Exception $exception){
+            return session()->flash('error', __('messages.general_error'));
+        }
     }
 
     /**

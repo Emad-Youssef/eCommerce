@@ -48,10 +48,10 @@
                                 <div class="card-body">
                                     @include('dashboard.includes.alerts.success')
                                     @include('dashboard.includes.alerts.error')
-                                    <form id="form-ajax" class="form" data-action="{{ route('admin.admins.store') }}" method="POST"
+                                    <form id="form-ajax" class="form" data-action="{{ route('admin.admins.update',$admin->id) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
-                                        
+                                        {{ method_field('put') }}
                                         @include('dashboard.admins._form')
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"

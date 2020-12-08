@@ -2,13 +2,9 @@
 @section('title', __('site.edit_profile'))
 @push('style')
 <style>
-.has_error {
-    border: 1px solid red !important;
-}
-
-#arvalue {
-    direction: rtl;
-}
+    .has_error {
+        border: 1px solid red !important;
+    }
 </style>
 @endpush
 @section('content')

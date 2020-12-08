@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="projectinput1">@lang('site.name')</label>
-                <input type="text" id="name" class="form-control border-msg" name="name" >
+                <input type="text" id="name" value="{{ isset($admin)?$admin->name:'' }}" class="form-control border-msg" name="name" >
                 <p id="error-name" class="error-content text-danger"></p>
             </div>
         </div>
@@ -14,12 +14,13 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="projectinput1">@lang('site.email')</label>
-                <input type="email" id="email" class="form-control border-msg" name="email">
+                <input type="email" id="email" value="{{ isset($admin)?$admin->email:'' }}" class="form-control border-msg" name="email">
                 <p id="error-email" class="error-content text-danger"></p>
             </div>
         </div>
     </div>
 
+    @if(!isset($admin))
     <div class="row">
         <div class="col-md-6">
             <label class=" label-control" for="password">@lang('site.password')</label>
@@ -34,4 +35,5 @@
         </div>
 
     </div>
+    @endif
 </div>
