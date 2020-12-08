@@ -43,11 +43,10 @@
                                 </div>
                             </div>
 
-                            @include('dashboard.includes.alerts.success')
-                            @include('dashboard.includes.alerts.error')
-
                             <div class="card-content collapse show">
                                 <div class="card-body card-dashboard">
+                                    @include('dashboard.includes.alerts.success')
+                                    @include('dashboard.includes.alerts.error')
                                     <div class="table table-responsive">
                                         {!! $dataTable->table([
                                               'class' => 'table table-striped table-bordered table-sm table-hover',

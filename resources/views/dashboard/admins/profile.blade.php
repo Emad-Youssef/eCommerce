@@ -95,7 +95,7 @@
                                                 <i class="ft-x"></i> @lang('site.retreat')
                                             </button>
                                             <button type="submit" class="btn btn-primary mr-1">
-                                                <i class="la la-check-square-o"></i> @lang('site.save')
+                                                <i class="ft-check"></i> @lang('site.save')
                                             </button>
                                         </div>
                                     </form>

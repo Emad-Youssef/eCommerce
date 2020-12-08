@@ -35,7 +35,7 @@
           <ul class="menu-content">
             <li class="{{Request::is('*/admins')?'active':''}}"><a class="menu-item" href="{{ route('admin.admins.index') }}">{{ __('site.show_admins') }}</a>
             </li>
-            <li class="{{Request::is('*/admins/create')?'active':''}}"><a class="menu-item" href="" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_admin') }}</a>
+            <li class="{{Request::is('*/admins/create')?'active':''}}"><a class="menu-item" href="{{ route('admin.admins.create') }}" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_admin') }}</a>
             </li>
           
           </ul>

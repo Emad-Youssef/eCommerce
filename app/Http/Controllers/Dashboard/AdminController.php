@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use Exception;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\DataTables\AdminDatatables;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreAdmin;
 
 class AdminController extends Controller
 {
@@ -33,7 +36,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $title = __('site.add_admin');
+        return view($this->model_view_folder.'.create', compact('title'));
     }
 
     /**
@@ -42,9 +46,24 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAdmin $request)
     {
-        //
+        try {
+            $id= auth('admin')->user()->id;
+            $admin = Admin::find($id);
+            $admin->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+            session()->flash('success', __('messages.added_successfully'));
+            return response()->json([
+                'route' => route('admin.admins.index')
+            ]);
+
+        }catch (\Exception $exception){
+            return session()->flash('error', __('messages.general_error'));
+        }
     }
 
     /**
