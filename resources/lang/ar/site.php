@@ -43,6 +43,9 @@ return [
     'value'           => 'القيمة',
     'retreat'   => 'تراجع',
     'save'      => 'حفظ',
+    'yes'       => 'نعم',
+    'no'        => 'لا',
+    'deletion_process' => 'قم بإجراء عملية الحذف',
 
     // datatables
     'id'                    => 'التسلسل',

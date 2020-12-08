@@ -70,7 +70,7 @@
     <script src="{{asset('assets/admin/vendors/js/tables/datatable/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('assets/admin/vendors/js/tables/datatable/buttons.bootstrap4.min.js')}}"></script>
     <script src="/vendor/datatables/buttons.server-side.js"></script>
-
     {!! $dataTable->scripts() !!}
-    
+    <script src="{{asset('assets/admin/js/jquery-confirm/jquery.confirm.min.js')}}"></script>
+    <script src="{{asset('assets/admin/js/form_ajax.js')}}"></script>
 @endpush

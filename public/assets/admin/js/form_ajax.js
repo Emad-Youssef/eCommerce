@@ -35,29 +35,43 @@ $(function () {
         })
     });
 
-    $(document).on('submit','.form-delete', function(e) {
-        e.preventDefault()
-        var route = $(this).data('action');
-        var dataSend = new FormData(this);
-        $.ajax({
-            url     : route,
-            type    : 'post',
-            data    : dataSend,
-            dataType:'json',
-            processData: false,
-            contentType: false,
-            cache: false,
-            success : function(data){
-                $('#type-errors').hide();
-                $('#type-errors').text(data.message).show();
-                $('.table-responsive .table').DataTable().ajax.reload();
-            },
-            error: function (errors){
-                alert(errors.status+" error")
 
+    //delete
+    $(document).on('click','.delete',function(){
+
+        var route   = $(this).data('route');
+        var token   = $(this).data('token');
+        var msDelete   = $(this).data('msdelete');
+        var yes   = $(this).data('yes');
+        var no   = $(this).data('no');
+        $.confirm({
+            icon                : 'glyphicon glyphicon-floppy-remove',
+            animation           : 'rotateX',
+            closeAnimation      : 'rotateXR',
+            title               : '',
+            autoClose           : 'cancel|6000',
+            text                : msDelete,
+            confirmButtonClass  : 'btn-outline',
+            cancelButtonClass   : 'btn-outline',
+            confirmButton       : yes,
+            cancelButton        : no,
+            dialogClass			: "modal-danger modal-dialog",
+            confirm: function () {
+                $.ajax({
+                    url     : route,
+                    type    : 'post',
+                    data    : {_method: 'delete', _token :token},
+                    dataType:'json',
+                    success : function(data){
+                        $('#type-errors').hide();
+                        $('#type-errors').text(data.message).show();
+                        $('.table-responsive .table').DataTable().ajax.reload();
+                    },
+                    error: function (errors){
+                        alert(errors.status+" error")
+                    }
+                });
             }
-        })
+        });
     });
-
-
 });

@@ -126,6 +126,14 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $admin = Admin::find($id);
+            $admin->delete();
+            return response()->json([
+                'message' => __('messages.deleted_successfully')
+            ]);
+        }catch (\Exception $exception){
+            return session()->flash('error', __('messages.general_error'));
+        }
     }
 }

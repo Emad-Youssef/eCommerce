@@ -35,6 +35,9 @@ return [
     'add_admin'      => 'Add Admin',
     'edit_admin'      => 'Edit Admin',
     'delete'        => 'Delete',
+    'yes'       => 'Yes',
+    'no'        => 'No',
+    'deletion_process' => 'Make the deletion process',
 
     // shipping 
     'settings'  => 'Settings',
