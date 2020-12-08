@@ -19,38 +19,39 @@
           rel="stylesheet">
     <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/icheck/icheck.css')}}"> -->
     <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/icheck/custom.css')}}"> -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/tables/datatable/datatables.min.css')}}">
 
     @if(app()->getLocale() == 'ar')
-    <!-- BEGIN VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/vendors.css')}}">
-    <!-- END VENDOR CSS-->
-    <!-- BEGIN MODERN CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/app.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/css-rtl/custom-rtl.css">
-    <!-- END MODERN CSS-->
-    <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/colors/palette-gradient.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
-    <!-- END Page Level CSS-->
-    <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/assets/css/style-rtl.css')}}">
-    <!-- END Custom CSS-->
+      <!-- BEGIN VENDOR CSS-->
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/vendors.css')}}">
+      <!-- END VENDOR CSS-->
+      <!-- BEGIN MODERN CSS-->
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/app.css')}}">
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/css-rtl/custom-rtl.css">
+      <!-- END MODERN CSS-->
+      <!-- BEGIN Page Level CSS-->
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/core/colors/palette-gradient.css')}}">
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
+      <!-- END Page Level CSS-->
+      <!-- BEGIN Custom CSS-->
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/assets/css/style-rtl.css')}}">
+      <!-- END Custom CSS-->
     @else
-    <!-- BEGIN VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/vendors.css')}}">
-    <!-- END VENDOR CSS-->
-    <!-- BEGIN MODERN CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/app.css')}}">
-    <!-- END MODERN CSS-->
-    <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/core/menu/menu-types/vertical-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/core/colors/palette-gradient.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
-    <!-- END Page Level CSS-->
-    <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/assets/css/style.css')}}">
-    <!-- END Custom CSS-->
+      <!-- BEGIN VENDOR CSS-->
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/vendors.css')}}">
+      <!-- END VENDOR CSS-->
+      <!-- BEGIN MODERN CSS-->
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/app.css')}}">
+      <!-- END MODERN CSS-->
+      <!-- BEGIN Page Level CSS-->
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/core/menu/menu-types/vertical-menu.css')}}">
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/core/colors/palette-gradient.css')}}">
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
+      <!-- END Page Level CSS-->
+      <!-- BEGIN Custom CSS-->
+      <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/assets/css/style.css')}}">
+      <!-- END Custom CSS-->
     @endif
     {{-- @notify_css --}}
     @stack('style')
@@ -58,6 +59,9 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
+        }
+        .table #admindatatables-table_length {
+          margin-top: 10px;
         }
     </style>
 </head>
@@ -78,8 +82,6 @@
 <script src="{{asset('assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/tables/datatable/datatables.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{asset('assets/admin/vendors/js/tables/datatable/dataTables.buttons.min.js')}}"
         type="text/javascript"></script>
 
 <!-- BEGIN PAGE VENDOR JS-->

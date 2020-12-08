@@ -29,6 +29,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
 			
 			// admins routes
+			Route::resource('/admins', 'AdminController');
 			Route::get('/profile', 'ProfileAdminController@index')->name('profile');
 			Route::post('/updateProfile', 'ProfileAdminController@update')->name('profile_update');
 

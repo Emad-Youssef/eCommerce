@@ -31,6 +31,16 @@
           </ul>
         </li>
 
+        <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.admins') }}</span></a>
+          <ul class="menu-content">
+            <li class="{{Request::is('*/admins')?'active':''}}"><a class="menu-item" href="{{ route('admin.admins.index') }}">{{ __('site.show_admins') }}</a>
+            </li>
+            <li class="{{Request::is('*/admins/create')?'active':''}}"><a class="menu-item" href="" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_admin') }}</a>
+            </li>
+          
+          </ul>
+        </li>
+
       </ul>
     </div>
   </div>

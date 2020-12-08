@@ -26,6 +26,12 @@ return [
     'email'  => 'البريد الالكتروني',
     'password'  => 'كلمة المرور',
     'password_confirmation'  => 'تأكيد كلمة المرور',
+    'admins'      => 'المشرفين',
+    'admin'      => 'مشرف',
+    'show_admins'      => 'عرض المشرفين',
+    'add_admin'      => 'أضافة مشرف',
+    'edit_admin'      => 'تعديل مشرف',
+    'delete'            => 'حذف',
     // shipping 
     'settings'  => 'الأعدادات',
     'shipping'  => 'الشحن',
@@ -39,6 +45,9 @@ return [
     'save'      => 'حفظ',
 
     // datatables
+    'id'                    => 'التسلسل',
+    'action'                => 'التحكم',
+    'created_at'                => 'الاضافة',
     'edit'                  => 'تعديل',
     'delete'                => 'حذف',
     'create'                => 'أضافة',

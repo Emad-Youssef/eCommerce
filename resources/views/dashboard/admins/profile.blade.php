@@ -62,7 +62,7 @@
                                                 <div class="col-md-9">
                                                     <p id="error-name" class="error-content text-danger"></p>
                                                     <input type="text" id="projectinput1 name" class="form-control border-msg"
-                                                    value="{{ $admin->name }}" name="name">
+                                                    value="{{ $admin->name }}" name="name" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -70,7 +70,7 @@
                                                 <div class="col-md-9">
                                                 <p id="error-email" class="error-content text-danger"></p>
                                                     <input type="text" id="projectinput3 emal" class="form-control border-msg"
-                                                       value="{{ $admin->email }}" name="email">
+                                                       value="{{ $admin->email }}" name="email" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
