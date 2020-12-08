@@ -17,6 +17,7 @@ return [
     'added_successfully' => 'تمت الأضافة بنجاح',
     'updateed_successfully' => 'تم التعديل بنجاح',
     'general_error'    => 'هناك خطأ ما الرجاء المحاوله فى وقت لاحق',
-    'this_item_does_not_exist'  => 'هذا العنصر غير موجود'
+    'this_item_does_not_exist'  => 'هذا العنصر غير موجود',
+    'msdelete'  => 'هل انت متاكد من الحذف ؟',
 
 ];

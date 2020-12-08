@@ -155,13 +155,14 @@
           <ul class="nav navbar-nav float-right">
             <li class="dropdown dropdown-user nav-item">
               <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                <span class="mr-1">Hello,
-                  <span class="user-name text-bold-700">John Doe</span>
+                <span class="mr-1">
+                  <span class="user-name text-bold-700" style="display: inline-block;"><i class="la la-angle-double-down"></i>{{ auth('admin')->user()->name }}</span>
                 </span>
                 <span class="avatar avatar-online">
-                  <img src="{{asset('assets')}}/admin/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span>
+                  <img src="{{asset('assets')}}/admin/images/avatar5.png" alt="avatar">
+                  <i></i></span>
               </a>
-              <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a>
+              <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="ft-user"></i>@lang('site.edit_profile')</a>
                 <a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a>
                 <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
                 <a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
@@ -180,11 +181,11 @@
               </div>
             </li>
             <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-gb"></i><span class="selected-language"></span></a>
+              aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-{{app()->getLocale() == 'ar'? 'eg':'gb'}}"></i><span class="selected-language"></span></a>
               <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                  <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                  <i class="flag-icon flag-icon-gb"></i>  {{ $properties['native'] }}
+              @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                  <i class="flag-icon flag-icon-{{$localeCode == 'ar'? 'eg':'gb'}}"></i>  {{ $properties['native'] }}
                 </a>
               @endforeach
               </div>

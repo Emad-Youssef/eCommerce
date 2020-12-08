@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
@@ -18,5 +19,9 @@ class Admin extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
+
+    public function getCreatedAtAttribute($val){
+        return Carbon::parse($val)->diffForHumans();
+    }
 
 }

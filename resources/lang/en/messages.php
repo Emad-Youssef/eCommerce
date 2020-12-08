@@ -17,5 +17,6 @@ return [
     'added_successfully' => 'Added successfully',
     'updateed_successfully' => 'Updateed successfully',
     'general_error'    => 'Something went wrong, please try again later',
-    'this_item_does_not_exist'  => 'This item does not exist'
+    'this_item_does_not_exist'  => 'This item does not exist',
+    'msdelete'  => 'Are you sure you want to delete?',
 ];
