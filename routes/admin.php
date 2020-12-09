@@ -21,24 +21,31 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 		// routs Authenticate admin
 		Route::group(['middleware' => 'auth:admin'], function() {
 	
-			 ###### logout route
-			 Route::post('/logout', 'LoginController@logout')->name('logout');
-	
-			// dashboard home page
-			Route::get('/', 'DashboardController@index')->name('home');
+			######################## logout route ##############
+			Route::post('/logout', 'LoginController@logout')->name('logout');
+			######################### logout ###################
 
+			######################### dashboard home page ########
+			Route::get('/', 'DashboardController@index')->name('home');
+			######################### home ###################
 			
-			// admins routes
+			######################### admins routes #############
 			Route::resource('/admins', 'AdminController');
 			Route::get('/profile', 'ProfileAdminController@index')->name('profile');
 			Route::post('/updateProfile', 'ProfileAdminController@update')->name('profile_update');
+			########################## admins ###################
 
-			// settings routes
+			########################## MainCategory ####
+			Route::resource('/mainCategory', 'MainCategoryController');
+			########################## MainCategory #######
+
+			######################### settings routes #############
 			Route::group(['prefix' => 'settings'], function() {
 				// shipping routs
 				Route::get('/shipping/{type}', 'ShippingController@editShipping')->name('settings.editShipping');
 				Route::post('/update-shipping/{id}', 'ShippingController@updateShipping')->name('settings.updateShipping');
 			});
+			######################### settings routes #############
 		});
 		
 	

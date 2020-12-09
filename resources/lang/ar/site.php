@@ -32,6 +32,10 @@ return [
     'add_admin'      => 'أضافة مشرف',
     'edit_admin'      => 'تعديل مشرف',
     'delete'            => 'حذف',
+    'slug'          => 'أسم الرابط',
+    'is_active'     => 'الحالة',
+    'active'        => 'مفعل',
+    'unactive'      => 'غير مفعل',
     // shipping 
     'settings'  => 'الأعدادات',
     'shipping'  => 'الشحن',
@@ -46,6 +50,21 @@ return [
     'yes'       => 'نعم',
     'no'        => 'لا',
     'deletion_process' => 'قم بإجراء عملية الحذف',
+    // categories
+    'main_categories' => 'الأقسام الرئيسية',
+    'show_main_categories' => 'عرض الأقسام الرئيسية',
+    'mainCategory'  => 'قسم رائيسي',
+    'show_mainCategory' => 'عرض قسم رائيسي',
+    'add_mainCategory'  => 'أضافة قسم رائيسي',
+    'edit_mainCategory' => 'تعديل قسم رائيسي',
+    'sub_categories' => 'الأقسام الفرعية',
+    'show_sub_categories' => 'عرض الاقسام الفرعية',
+    'subCategory'  => 'قسم فرعي',
+    'show_subCategory' => 'عرض قسم فرعي',
+    'add_subCategory'  => 'أضافة قسم فرعي',
+    'edit_subCategory' => 'تعديل قسم فرعي',
+
+
 
     // datatables
     'id'                    => 'التسلسل',

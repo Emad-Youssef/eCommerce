@@ -60,7 +60,7 @@
         body {
             font-family: 'Cairo', sans-serif;
         }
-        .table #admindatatables-table_length {
+        .table .dataTables_length {
           margin-top: 10px;
         }
     </style>
