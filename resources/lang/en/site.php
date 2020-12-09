@@ -42,6 +42,7 @@ return [
     'is_active'     => 'Is active',
     'active'        => 'Active',
     'unactive'      => 'Unactive',
+    'img'           => 'Image',
     // shipping 
     'settings'  => 'Settings',
     'shipping'  => 'Shipping',

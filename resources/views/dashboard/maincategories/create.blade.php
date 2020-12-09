@@ -17,7 +17,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}">{{__('site.homepage')}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.admins.index')}}">{{__('site.admins')}}</a>
+                            <li class="breadcrumb-item"><a href="{{route('admin.mainCategory.index')}}">{{__('site.main_categories')}}</a>
                             </li>
                             <li class="breadcrumb-item active"> {{$title}}
                             </li>
@@ -48,7 +48,7 @@
                                 <div class="card-body">
                                     @include('dashboard.includes.alerts.success')
                                     @include('dashboard.includes.alerts.error')
-                                    <form id="form-ajax" class="form" data-action="{{ route('admin.admins.store') }}" method="POST"
+                                    <form id="form-ajax" class="form" data-action="{{ route('admin.mainCategory.store') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         

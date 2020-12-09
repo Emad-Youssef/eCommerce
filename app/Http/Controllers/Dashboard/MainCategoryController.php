@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\MainCategoryDatatables;
+use App\Http\Requests\MainCategory\StoreMaincategory;
 
 class MainCategoryController extends Controller
 {
@@ -44,9 +46,24 @@ class MainCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMaincategory $request)
     {
-        //
+        // dd($request->all());
+        try {
+           
+            DB::beginTransaction();
+            Category::create($request->except('_token'));
+            DB::commit();
+
+            session()->flash('success', __('messages.added_successfully'));
+            return response()->json([
+                'route' => route('admin.mainCategory.index')
+            ]);
+
+        }catch (\Exception $exception){
+            DB::rollback();
+            return session()->flash('error', __('messages.general_error'));
+        }
     }
 
     /**

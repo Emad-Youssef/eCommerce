@@ -14,7 +14,7 @@ class Category extends Model implements TranslatableContract
     protected $with = ['translations'];
 
     public $translatedAttributes = ['name'];
-    protected $fillable = ['parent_id', 'slug', 'is_active'];
+    protected $fillable = ['parent_id', 'slug','is_active'];
 
     protected $casts = [
         'is_active' => 'boolean'
@@ -27,4 +27,5 @@ class Category extends Model implements TranslatableContract
     public function getActive(){
         return $this->is_active == 0?__('site.unactive'):__('site.active');
     }
+
 }
