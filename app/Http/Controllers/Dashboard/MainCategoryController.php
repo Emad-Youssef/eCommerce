@@ -130,6 +130,14 @@ class MainCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $category = Category::find($id);
+            $category->delete();
+            return response()->json([
+                'message' => __('messages.deleted_successfully')
+            ]);
+        }catch (\Exception $exception){
+            return session()->flash('error', __('messages.general_error'));
+        }
     }
 }
