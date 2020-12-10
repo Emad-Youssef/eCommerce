@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\MainCategoryDatatables;
 use App\Http\Requests\MainCategory\StoreMaincategory;
+use App\Http\Requests\MainCategory\UpdateMaincategory;
 
 class MainCategoryController extends Controller
 {
@@ -85,7 +86,13 @@ class MainCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = __('site.edit_mainCategory');
+        $category = Category::find($id);
+        if(!$category){
+            session()->flash('error', __('messages.this_item_does_not_exist'));
+            return back();
+        }
+        return view($this->model_view_folder.'.edit', compact('title','category'));
     }
 
     /**
@@ -95,9 +102,24 @@ class MainCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMaincategory $request, $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $category = Category::find($id);
+            $category->update($request->except(['_token', 'id']));
+            
+            DB::commit();
+            session()->flash('success', __('messages.updateed_successfully'));
+            return response()->json([
+                'route' => route('admin.mainCategory.index')
+            ]);
+
+        }catch (\Exception $exception){
+            DB::rollback();
+            return session()->flash('error', __('messages.general_error'));
+        }
     }
 
     /**
