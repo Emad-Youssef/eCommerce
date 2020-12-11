@@ -20,6 +20,23 @@ class Category extends Model implements TranslatableContract
         'is_active' => 'boolean'
     ];
 
+    public function subcategory(){
+
+        return $this->hasMany('App\Models\Category', 'parent_id');
+
+    }
+
+    public function parent() {
+        return $this->belongsTo('App\Models\Category', 'parent_id', 'id');
+    }
+
+
+    public function maincategory(){
+
+        return $this->hasMany('App\Models\Category', 'parent_id');
+
+    }
+
     public function getCreatedAtAttribute($val){
         return Carbon::parse($val)->diffForHumans();
     }
