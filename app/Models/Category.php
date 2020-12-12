@@ -20,25 +20,20 @@ class Category extends Model implements TranslatableContract
         'is_active' => 'boolean'
     ];
 
-    public function subcategory(){
+    public function subcategories(){
 
-        return $this->hasMany('App\Models\Category', 'parent_id');
+        return $this->hasMany(self::class, 'parent_id');
 
     }
-
-    public function parent() {
-        return $this->belongsTo('App\Models\Category', 'parent_id', 'id');
-    }
-
 
     public function maincategory(){
 
-        return $this->hasMany('App\Models\Category', 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id');
 
     }
 
     public function scopeMainselect($q){
-        return $q->whereNull('parent_id')->where('is_active', 1)->select('id','slug')->with('subcategory');
+        return $q->whereNull('parent_id')->where('is_active', 1)->select('id','slug')->with('subcategories');
     }
 
     public function getCreatedAtAttribute($val){

@@ -4,17 +4,17 @@
     <div class="row">
         <div class="col-md-6">
             <label><i class="fa fa-user"></i>@lang('site.main_categories')</label>
-            <select class="form-control  border-msg" name="parent_id" id="parent_id">
+            <select class="form-control  border-msg" name="parent_id" id="parent_id" required>
                 <option value="">@lang('site.choose')</option>
                 @foreach($maincategories as $cate)
                 <option value="{{$cate->id}}" {{ isset($category)&&$cate->id == $category->parent_id?'selected':'' }} style="font-weight: bolder;color: #885b5b;">
                  {{$cate->name}}</option>
-                    @if(count($cate->subcategory))
-                        @foreach($cate->subcategory as $index =>$subcate)
+                    @if(count($cate->subcategories))
+                        @foreach($cate->subcategories as $index =>$subcate)
                             <option value="{{$subcate->id}}" {{ isset($category)&&$subcate->id == $category->parent_id?'selected':'' }} style="font-weight: 600;">
                             -{{$subcate->name}}</option>
-                            @if(count($subcate->subcategory))
-                                @include('dashboard.subcategories.sub_category_list',['subcategories' => $subcate->subcategory])
+                            @if(count($subcate->subcategories))
+                                @include('dashboard.subcategories.sub_category_list',['subcategories' => $subcate->subcategories])
                             @endif
                         @endforeach
                     @endif
@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="error-{{$locale}}name">@lang('site.name_'.$locale)</label>
                 <input type="text" id="{{$locale}}name" class="form-control border-msg" name="{{$locale}}[name]"
-                    value="{{ isset($category)?@$category->translate($locale)->name:'' }}" >
+                    value="{{ isset($category)?@$category->translate($locale)->name:'' }}" required>
                 <p id="error-{{$locale}}name" class="error-content text-danger"></p>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <div class="form-group">
                 <label for="error-slug">@lang('site.slug')</label>
                 <input type="text" id="slug" class="form-control border-msg" name="slug"
-                    value="{{ isset($category)?$category->slug:'' }}" >
+                    value="{{ isset($category)?$category->slug:'' }}" required>
                 <p id="error-slug" class="error-content text-danger"></p>
             </div>
         </div>
