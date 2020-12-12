@@ -61,7 +61,7 @@
                                                 onclick="history.back();">
                                                 <i class="ft-x"></i> @lang('site.retreat')
                                             </button>
-                                            <button type="submit" class="btn btn-primary mr-1">
+                                            <button type="submit" class="btn btn-primary mr-1" disabled="true">
                                                 <i class="ft-check"></i> @lang('site.save')
                                             </button>
                                         </div>

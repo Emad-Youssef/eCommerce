@@ -234,3 +234,9 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="{{asset('assets/admin/js/scripts/pages/dashboard-crypto.js')}}" type="text/javascript"></script>
+    <!-- END PAGE LEVEL JS-->
+@endpush

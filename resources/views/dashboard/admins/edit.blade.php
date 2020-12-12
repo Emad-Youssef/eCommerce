@@ -54,7 +54,7 @@
                                         {{ method_field('put') }}
                                         @include('dashboard.admins._form')
                                         <div class="form-actions">
-                                            <button type="button" class="btn btn-warning mr-1"
+                                            <button type="button" disabled="true" class="btn btn-warning mr-1"
                                                 onclick="history.back();">
                                                 <i class="ft-x"></i> @lang('site.retreat')
                                             </button>

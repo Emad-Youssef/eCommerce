@@ -37,6 +37,10 @@ class Category extends Model implements TranslatableContract
 
     }
 
+    public function scopeMainselect($q){
+        return $q->whereNull('parent_id')->where('is_active', 1)->select('id','slug')->with('subcategory');
+    }
+
     public function getCreatedAtAttribute($val){
         return Carbon::parse($val)->diffForHumans();
     }

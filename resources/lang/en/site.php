@@ -43,6 +43,7 @@ return [
     'active'        => 'Active',
     'unactive'      => 'Unactive',
     'img'           => 'Image',
+    'choose'        => 'Choose',
     // shipping 
     'settings'  => 'Settings',
     'shipping'  => 'Shipping',

@@ -81,19 +81,6 @@
                                                             id="plain_value" class="form-control border-msg" name="plain_value">
                                                     </div>
                                                 </div>
-
-                                                <!-- <div class="col-md-6">
-                                                    <div class="form-group mt-1">
-
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                name="customCheck" id="customCheck2">
-                                                            <label class="custom-control-label"
-                                                                for="customCheck2">Custom</label>
-                                                        </div>
-
-                                                    </div>
-                                                </div> -->
                                             </div>
                                         </div>
 
@@ -102,7 +89,7 @@
                                                 onclick="history.back();">
                                                 <i class="ft-x"></i> @lang('site.retreat')
                                             </button>
-                                            <button type="submit" class="btn btn-primary mr-1">
+                                            <button type="submit" disabled="true" class="btn btn-primary mr-1">
                                                 <i class="la la-check-square-o"></i> @lang('site.save')
                                             </button>
                                         </div>

@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title', $title)
 @push('style')
+    <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/selects/select2.min.css')}}"> -->
     <style>
         .has_error{
             border: 1px solid red !important;
@@ -20,7 +21,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}">{{__('site.homepage')}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.mainCategory.index')}}">{{__('site.main_categories')}}</a>
+                            <li class="breadcrumb-item"><a href="{{route('admin.subCategory.index')}}">{{__('site.sub_categories')}}</a>
                             </li>
                             <li class="breadcrumb-item active"> {{$title}}
                             </li>
@@ -51,17 +52,17 @@
                                 <div class="card-body">
                                     @include('dashboard.includes.alerts.success')
                                     @include('dashboard.includes.alerts.error')
-                                    <form id="form-ajax" class="form" data-action="{{ route('admin.mainCategory.store') }}" method="POST"
+                                    <form id="form-ajax" class="form" data-action="{{ route('admin.subCategory.store') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         
-                                        @include('dashboard.maincategories._form')
+                                        @include('dashboard.subcategories._form')
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                 onclick="history.back();">
                                                 <i class="ft-x"></i> @lang('site.retreat')
                                             </button>
-                                            <button type="submit" class="btn btn-primary mr-1">
+                                            <button type="submit" class="btn btn-primary mr-1" disabled="true">
                                                 <i class="ft-check"></i> @lang('site.save')
                                             </button>
                                         </div>
@@ -81,5 +82,7 @@
 @endsection
 
 @push('script')
+<!-- <script src="{{asset('assets/admin/js/scripts/forms/select/form-select2.js')}}" type="text/javascript"></script> -->
+
 <script src="{{asset('assets/admin/js/form_ajax.js')}}"></script>
 @endpush

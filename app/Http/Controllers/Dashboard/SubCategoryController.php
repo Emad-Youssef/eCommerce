@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\CategoryTranslation;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
-use App\DataTables\SubCategoryDatatables;
 use App\DataTables\SubCategoriesDatatables;
+use App\Http\Requests\SubCategory\StoreSubcategory;
 
 class SubCategoryController extends Controller
 {
@@ -37,8 +38,10 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $title = __('site.add_mainCategory');
-        return view($this->model_view_folder.'.create', compact('title'));
+        $title = __('site.add_subCategory');
+        // mainselect scope form model
+        $maincategories = Category::mainselect()->get();
+        return view($this->model_view_folder.'.create', compact('title','maincategories'));
     }
 
     /**
@@ -47,7 +50,7 @@ class SubCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMaincategory $request)
+    public function store(StoreSubcategory $request)
     {
         // dd($request->all());
         try {
@@ -58,7 +61,7 @@ class SubCategoryController extends Controller
 
             session()->flash('success', __('messages.added_successfully'));
             return response()->json([
-                'route' => route('admin.mainCategory.index')
+                'route' => route('admin.subCategory.index')
             ]);
 
         }catch (\Exception $exception){
@@ -86,7 +89,7 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
-        $title = __('site.edit_mainCategory');
+        $title = __('site.edit_subCategory');
         $category = Category::find($id);
         if(!$category){
             session()->flash('error', __('messages.this_item_does_not_exist'));
