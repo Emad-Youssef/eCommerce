@@ -87,7 +87,7 @@ class MainCategoryController extends Controller
     public function edit($id)
     {
         $title = __('site.edit_mainCategory');
-        $category = Category::find($id);
+        $category = Category::whereNull('parent_id')->find($id);
         if(!$category){
             session()->flash('error', __('messages.this_item_does_not_exist'));
             return back();
@@ -131,7 +131,7 @@ class MainCategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $category = Category::find($id);
+            $category = Category::whereNull('parent_id')->find($id);
             $category->delete();
             return response()->json([
                 'message' => __('messages.deleted_successfully')

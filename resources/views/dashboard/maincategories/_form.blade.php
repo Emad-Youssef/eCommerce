@@ -30,6 +30,7 @@
                 <label for="is_active" class="card-title ml-1">@lang('site.is_active')</label>
                 <input type="hidden" name="is_active" value="0">
                 @if(isset($category))
+                <!-- send id for validate unique slug -->
                 <input type="hidden" name="id" value="{{$category->id}}">
                 <input type="checkbox" name="is_active" id="is_active" class="switchery border-msg"
                     data-color="success" value="1" {{ $category->is_active == 1?'checked':''}} />

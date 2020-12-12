@@ -7,6 +7,7 @@
             </li>
           </ul>
         </li>
+        <!-- settings -->
         <li class=" nav-item"><a href="#"><i class="la la-cogs"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.settings') }}</span></a>
           <ul class="menu-content">
             <li><a class="menu-item" href="#" data-i18n="nav.templates.vert.main">{{ __('site.shipping') }}</a>
@@ -30,7 +31,7 @@
             </li>
           </ul>
         </li>
-
+        <!-- admins -->
         <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.admins') }}</span></a>
           <ul class="menu-content">
             <li class="{{Request::is('*/admins')?'active':''}}"><a class="menu-item" href="{{ route('admin.admins.index') }}">{{ __('site.show_admins') }}</a>
@@ -40,12 +41,22 @@
           
           </ul>
         </li>
-
-        <li class=" nav-item"><a href="#"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.main_categories') }}</span></a>
+        <!-- mainCategory -->
+        <li class=" nav-item"><a href="#"><i class="la la-folder-open-o"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.main_categories') }}</span></a>
           <ul class="menu-content">
             <li class="{{Request::is('*/mainCategory')?'active':''}}"><a class="menu-item" href="{{ route('admin.mainCategory.index') }}">{{ __('site.show_main_categories') }}</a>
             </li>
             <li class="{{Request::is('*/mainCategory/create')?'active':''}}"><a class="menu-item" href="{{ route('admin.mainCategory.create') }}" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_mainCategory') }}</a>
+            </li>
+          
+          </ul>
+        </li>
+        <!-- subCategory -->
+        <li class=" nav-item"><a href="#"><i class="la la-folder"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.sub_categories') }}</span></a>
+          <ul class="menu-content">
+            <li class="{{Request::is('*/subCategory')?'active':''}}"><a class="menu-item" href="{{ route('admin.subCategory.index') }}">{{ __('site.show_sub_categories') }}</a>
+            </li>
+            <li class="{{Request::is('*/subCategory/create')?'active':''}}"><a class="menu-item" href="{{ route('admin.subCategory.create') }}" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_subCategory') }}</a>
             </li>
           
           </ul>

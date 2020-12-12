@@ -5,6 +5,9 @@
         .has_error{
             border: 1px solid red !important;
         }
+        #arname {
+            direction: rtl;
+        }
     </style>
 @endpush
 @section('content')
@@ -58,7 +61,7 @@
                                                 onclick="history.back();">
                                                 <i class="ft-x"></i> @lang('site.retreat')
                                             </button>
-                                            <button type="submit" class="btn btn-primary mr-1">
+                                            <button type="submit" disabled="true" class="btn btn-primary mr-1">
                                                 <i class="ft-check"></i> @lang('site.save')
                                             </button>
                                         </div>

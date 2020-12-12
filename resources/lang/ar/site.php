@@ -37,6 +37,7 @@ return [
     'active'        => 'مفعل',
     'unactive'      => 'غير مفعل',
     'img'           => 'صورة',
+    'choose'        => 'أختر',
     // shipping 
     'settings'  => 'الأعدادات',
     'shipping'  => 'الشحن',

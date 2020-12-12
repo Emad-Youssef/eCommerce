@@ -1,0 +1,1 @@
+{{ getParent($parent_id) }}
