@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use App\DataTables\SubCategoriesDatatables;
 use App\Http\Requests\SubCategory\StoreSubcategory;
+use App\Http\Requests\SubCategory\UpdateSubcategory;
 
 class SubCategoryController extends Controller
 {
@@ -90,12 +91,14 @@ class SubCategoryController extends Controller
     public function edit($id)
     {
         $title = __('site.edit_subCategory');
-        $category = Category::find($id);
+        // mainselect scope form model
+        $maincategories = Category::mainselect()->get();
+        $category = Category::whereNotNull('parent_id')->find($id);
         if(!$category){
             session()->flash('error', __('messages.this_item_does_not_exist'));
             return back();
         }
-        return view($this->model_view_folder.'.edit', compact('title','category'));
+        return view($this->model_view_folder.'.edit', compact('title','category','maincategories'));
     }
 
     /**
@@ -105,7 +108,7 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMaincategory $request, $id)
+    public function update(UpdateSubcategory $request, $id)
     {
         try {
             DB::beginTransaction();
@@ -116,7 +119,7 @@ class SubCategoryController extends Controller
             DB::commit();
             session()->flash('success', __('messages.updateed_successfully'));
             return response()->json([
-                'route' => route('admin.mainCategory.index')
+                'route' => route('admin.subCategory.index')
             ]);
 
         }catch (\Exception $exception){
@@ -134,7 +137,7 @@ class SubCategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $category = Category::find($id);
+            $category = Category::whereNotNull('parent_id')->find($id);
             $category->delete();
             return response()->json([
                 'message' => __('messages.deleted_successfully')

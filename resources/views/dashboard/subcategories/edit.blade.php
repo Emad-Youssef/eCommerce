@@ -20,7 +20,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}">{{__('site.homepage')}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.mainCategory.index')}}">{{__('site.main_categories')}}</a>
+                            <li class="breadcrumb-item"><a href="{{route('admin.subCategory.index')}}">{{__('site.sub_categories')}}</a>
                             </li>
                             <li class="breadcrumb-item active"> {{$title}}
                             </li>
@@ -51,11 +51,11 @@
                                 <div class="card-body">
                                     @include('dashboard.includes.alerts.success')
                                     @include('dashboard.includes.alerts.error')
-                                    <form id="form-ajax" class="form" data-action="{{ route('admin.mainCategory.update',$category->id) }}" method="POST"
+                                    <form id="form-ajax" class="form" data-action="{{ route('admin.subCategory.update',$category->id) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         {{ method_field('put') }}
-                                        @include('dashboard.maincategories._form')
+                                        @include('dashboard.subcategories._form')
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                 onclick="history.back();">

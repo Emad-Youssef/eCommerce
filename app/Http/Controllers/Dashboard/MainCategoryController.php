@@ -131,7 +131,7 @@ class MainCategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $category = Category::find($id);
+            $category = Category::whereNull('parent_id')->find($id);
             $category->delete();
             return response()->json([
                 'message' => __('messages.deleted_successfully')

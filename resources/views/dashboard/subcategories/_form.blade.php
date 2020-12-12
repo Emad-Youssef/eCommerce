@@ -7,11 +7,11 @@
             <select class="form-control  border-msg" name="parent_id" id="parent_id">
                 <option value="">@lang('site.choose')</option>
                 @foreach($maincategories as $cate)
-                <option value="{{$cate->id}}" {{isset($edit)&&$cate->id == $edit->parent_id?'selected':'' }} style="font-weight: bolder;color: #885b5b;">
+                <option value="{{$cate->id}}" {{ isset($category)&&$cate->id == $category->parent_id?'selected':'' }} style="font-weight: bolder;color: #885b5b;">
                  {{$cate->name}}</option>
                     @if(count($cate->subcategory))
                         @foreach($cate->subcategory as $index =>$subcate)
-                            <option value="{{$subcate->id}}" style="font-weight: 600;">
+                            <option value="{{$subcate->id}}" {{ isset($category)&&$subcate->id == $category->parent_id?'selected':'' }} style="font-weight: 600;">
                             -{{$subcate->name}}</option>
                             @if(count($subcate->subcategory))
                                 @include('dashboard.subcategories.sub_category_list',['subcategories' => $subcate->subcategory])
@@ -52,6 +52,7 @@
                 <label for="is_active" class="card-title ml-1">@lang('site.is_active')</label>
                 <input type="hidden" name="is_active" value="0">
                 @if(isset($category))
+                <!-- send id for validate unique slug -->
                 <input type="hidden" name="id" value="{{$category->id}}">
                 <input type="checkbox" name="is_active" id="is_active" class="switchery border-msg" data-color="success"
                     value="1" {{ $category->is_active == 1?'checked':''}} />
