@@ -125,7 +125,6 @@ class MainCategoryDatatables extends DataTable
             Column::computed('action')->title(trans('site.action'))
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
                   ->addClass('text-center'),
         ];
     }

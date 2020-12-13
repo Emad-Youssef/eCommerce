@@ -23,7 +23,7 @@ class Brand extends Model implements TranslatableContract
         return $this->is_active == 0?__('site.unactive'):__('site.active');
     }
 
-    public function getImgAttribute($val){
-        return $val !== null? asset('uploads/brands').'/'. $val: '';
+    public function getImg(){
+        return $this->img !== null? asset('uploads/brands').'/'. $this->img: '';
     }
 }

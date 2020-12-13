@@ -1,7 +1,9 @@
 <?php
 
+
 use App\Models\Category;
 
+// get parent category for subcategories in datatables
 if(!function_exists('getParent')){
     function getParent($id){
       $parent = Category::select(['id','slug'])->find($id);
@@ -9,13 +11,21 @@ if(!function_exists('getParent')){
     }
 }
 
-
+// upload file
 if(!function_exists('uploadImage')){
   function uploadImage($folder,$file){
       $file->store('/',$folder);
       $filename = $file->hashName();
       
       return $filename;
+  }
+}
+
+// delete file 
+if(!function_exists('deleteImage')){
+  function deleteImage($path,$file){
+      if(\File::exists(public_path($path.$file)))
+          return \File::delete(public_path($path.$file));
   }
 
 }

@@ -59,6 +59,7 @@ class BrandController extends Controller
             $brand->fill($request->except('_token','img'));
             if($request->hasFile('img')){
                 // save photo if exist
+                //helper function
                 $brand->img = uploadImage('brands',$request->img);
             }
             $brand->save();
@@ -114,7 +115,39 @@ class BrandController extends Controller
     public function update(UpdateBrand $request, $id)
     {
         // dd($request->all());
-       
+        try {
+
+            $brand = Brand::find($id);
+            if(!$brand){
+                session()->flash('error', __('messages.this_item_does_not_exist'));
+                return response()->json([
+                    'route' => route('admin.brands.index')
+                ]);
+            }
+            DB::beginTransaction();
+            // save old img 
+            $brand_img = $brand->img;
+            // update brand except -> _token & img
+            $brand->update($request->except(['_token', 'img']));
+            // check if request has new img & delete old path
+            if($request->has('img')){
+                //helper function
+                deleteImage('uploads/brands/',$brand_img);    
+                $brand_img = uploadImage('brands',$request->img);
+            }
+            $brand->img = $brand_img;
+            $brand->save();
+            // if all done update in datatbase
+            DB::commit();
+            session()->flash('success', __('messages.updateed_successfully'));
+            return response()->json([
+                'route' => route('admin.brands.index')
+            ]);
+
+        }catch (\Exception $exception){
+            DB::rollback();
+            return session()->flash('error', __('messages.general_error'));
+        }
     }
 
     /**
@@ -125,6 +158,18 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $brand = Brand::find($id);
+            $brand_img = $brand->img;
+            //helper function
+            deleteImage('uploads/brands/',$brand_img);   
+            $brand->delete();
+            
+            return response()->json([
+                'message' => __('messages.deleted_successfully')
+            ]);
+        }catch (\Exception $exception){
+            return session()->flash('error', __('messages.general_error'));
+        }
     }
 }
