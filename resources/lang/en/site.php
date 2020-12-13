@@ -66,6 +66,12 @@ return [
     'show_subCategory' => 'Show Sub Category',
     'add_subCategory'  => 'Create Sub Category',
     'edit_subCategory' => 'Edit Sub Category',
+    // brands 
+    'brands'  => 'Brands',
+    'brand'  => 'Brand',
+    'add_brand'  => 'Create Brand',
+    'show_brands'  => 'Show Brands',
+    'edit_brand'  => 'Edit Brand',
     // datatables
     'id'                    => 'Index',
     'action'                => 'Control',

@@ -8,3 +8,14 @@ if(!function_exists('getParent')){
       return $parent->name;
     }
 }
+
+
+if(!function_exists('uploadImage')){
+  function uploadImage($folder,$file){
+      $file->store('/',$folder);
+      $filename = $file->hashName();
+      
+      return $filename;
+  }
+
+}

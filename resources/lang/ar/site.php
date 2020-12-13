@@ -66,7 +66,12 @@ return [
     'add_subCategory'  => 'أضافة قسم فرعي',
     'edit_subCategory' => 'تعديل قسم فرعي',
 
-
+    // brands 
+    'brands'  => 'العلامات التجارية',
+    'brand'  => 'علامة تجارية',
+    'add_brand'  => 'أضافة علامة تجارية',
+    'show_brands'  => 'عرض العلامات التجارية',
+    'edit_brand'  => 'تعديل علامة تجارية',
 
     // datatables
     'id'                    => 'التسلسل',
