@@ -43,9 +43,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 			Route::resource('/subCategory', 'SubCategoryController');
 			########################## SubCategory #######
 
-			########################## barnds ####
+			########################## brands ####
 			Route::resource('/brands', 'BrandController');
-			########################## barnds #######
+			########################## brands #######
 
 			########################## tags ####
 			Route::resource('/tags', 'TagController');
@@ -59,8 +59,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 			});
 			######################### settings routes #############
 		});
-		
-	
 	}); 
 });
 
