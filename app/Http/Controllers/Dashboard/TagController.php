@@ -8,6 +8,7 @@ use App\DataTables\TagDatatables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Tag\StoreTag;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Tag\UpdateTag;
 
 class TagController extends Controller
 {
@@ -86,12 +87,12 @@ class TagController extends Controller
     public function edit($id)
     {
         $title = __('site.edit_tag');
-        $category = Category::whereNull('parent_id')->find($id);
-        if(!$category){
+        $tag = Tag::find($id);
+        if(!$tag){
             session()->flash('error', __('messages.this_item_does_not_exist'));
             return back();
         }
-        return view($this->model_view_folder.'.edit', compact('title','category'));
+        return view($this->model_view_folder.'.edit', compact('title','tag'));
     }
 
     /**
@@ -101,20 +102,20 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMaincategory $request, $id)
+    public function update(UpdateTag $request, $id)
     {
         try {
-            $category = Category::whereNull('parent_id')->find($id);
-            if(!$category){
+            $tag = Tag::find($id);
+            if(!$tag){
                 return session()->flash('error', __('messages.this_item_does_not_exist'));   
             }
             DB::beginTransaction();
-            $category->update($request->except(['_token', 'id']));
+            $tag->update($request->except(['_token', 'id']));
             
             DB::commit();
             session()->flash('success', __('messages.updateed_successfully'));
             return response()->json([
-                'route' => route('admin.mainCategory.index')
+                'route' => route('admin.tags.index')
             ]);
 
         }catch (\Exception $exception){
@@ -132,8 +133,8 @@ class TagController extends Controller
     public function destroy($id)
     {
         try {
-            $category = Category::whereNull('parent_id')->find($id);
-            $category->delete();
+            $tag = Tag::find($id);
+            $tag->delete();
             return response()->json([
                 'message' => __('messages.deleted_successfully')
             ]);
