@@ -111,9 +111,11 @@ class SubCategoryController extends Controller
     public function update(UpdateSubcategory $request, $id)
     {
         try {
+            $category = Category::whereNotNull('parent_id')->find($id);
+            if(!$category){
+                return session()->flash('error', __('messages.this_item_does_not_exist'));   
+            }
             DB::beginTransaction();
-
-            $category = Category::find($id);
             $category->update($request->except(['_token', 'id']));
             
             DB::commit();

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Category;
+use Exception;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\DataTables\TagDatatables;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\Tag\StoreTag;
 use App\Http\Controllers\Controller;
-use App\DataTables\MainCategoryDatatables;
-use App\Http\Requests\MainCategory\StoreMaincategory;
-use App\Http\Requests\MainCategory\UpdateMaincategory;
+use App\Http\Requests\Tag\UpdateTag;
 
-class MainCategoryController extends Controller
+class TagController extends Controller
 {
     public $model_view_folder;
 
@@ -18,16 +19,16 @@ class MainCategoryController extends Controller
 
     public function __construct()
     {
-        return $this->model_view_folder = 'dashboard.maincategories';
+        return $this->model_view_folder = 'dashboard.tags';
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(MainCategoryDatatables $category)
+    public function index(TagDatatables $tag)
     {
-        return $category->render($this->model_view_folder.'.index');
+        return $tag->render($this->model_view_folder.'.index');
     }
 
     /**
@@ -37,7 +38,7 @@ class MainCategoryController extends Controller
      */
     public function create()
     {
-        $title = __('site.add_mainCategory');
+        $title = __('site.add_tag');
         return view($this->model_view_folder.'.create', compact('title'));
     }
 
@@ -47,18 +48,18 @@ class MainCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMaincategory $request)
+    public function store(StoreTag $request)
     {
         // dd($request->all());
         try {
            
             DB::beginTransaction();
-            Category::create($request->except('_token'));
+            Tag::create($request->except('_token'));
             DB::commit();
 
             session()->flash('success', __('messages.added_successfully'));
             return response()->json([
-                'route' => route('admin.mainCategory.index')
+                'route' => route('admin.tags.index')
             ]);
 
         }catch (\Exception $exception){
@@ -86,13 +87,13 @@ class MainCategoryController extends Controller
      */
     public function edit($id)
     {
-        $title = __('site.edit_mainCategory');
-        $category = Category::whereNull('parent_id')->find($id);
-        if(!$category){
+        $title = __('site.edit_tag');
+        $tag = Tag::find($id);
+        if(!$tag){
             session()->flash('error', __('messages.this_item_does_not_exist'));
             return back();
         }
-        return view($this->model_view_folder.'.edit', compact('title','category'));
+        return view($this->model_view_folder.'.edit', compact('title','tag'));
     }
 
     /**
@@ -102,20 +103,20 @@ class MainCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMaincategory $request, $id)
+    public function update(UpdateTag $request, $id)
     {
         try {
-            $category = Category::whereNull('parent_id')->find($id);
-            if(!$category){
+            $tag = Tag::find($id);
+            if(!$tag){
                 return session()->flash('error', __('messages.this_item_does_not_exist'));   
             }
             DB::beginTransaction();
-            $category->update($request->except(['_token', 'id']));
+            $tag->update($request->except(['_token', 'id']));
             
             DB::commit();
             session()->flash('success', __('messages.updateed_successfully'));
             return response()->json([
-                'route' => route('admin.mainCategory.index')
+                'route' => route('admin.tags.index')
             ]);
 
         }catch (\Exception $exception){
@@ -133,8 +134,8 @@ class MainCategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $category = Category::whereNull('parent_id')->find($id);
-            $category->delete();
+            $tag = Tag::find($id);
+            $tag->delete();
             return response()->json([
                 'message' => __('messages.deleted_successfully')
             ]);

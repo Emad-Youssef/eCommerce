@@ -61,7 +61,26 @@
           
           </ul>
         </li>
-
+        <!-- brands -->
+        <li class=" nav-item"><a href="#"><i class="la la-trademark"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.brands') }}</span></a>
+          <ul class="menu-content">
+            <li class="{{Request::is('*/brands')?'active':''}}"><a class="menu-item" href="{{ route('admin.brands.index') }}">{{ __('site.show_brands') }}</a>
+            </li>
+            <li class="{{Request::is('*/brands/create')?'active':''}}"><a class="menu-item" href="{{ route('admin.brands.create') }}" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_brand') }}</a>
+            </li>
+          
+          </ul>
+        </li>
+        <!-- tags -->
+        <li class=" nav-item"><a href="#"><i class="la la-tags"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.tags') }}</span></a>
+          <ul class="menu-content">
+            <li class="{{Request::is('*/tags')?'active':''}}"><a class="menu-item" href="{{ route('admin.tags.index') }}">{{ __('site.show_tags') }}</a>
+            </li>
+            <li class="{{Request::is('*/tags/create')?'active':''}}"><a class="menu-item" href="{{ route('admin.tags.create') }}" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_tag') }}</a>
+            </li>
+          
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

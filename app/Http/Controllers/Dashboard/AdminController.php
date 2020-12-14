@@ -104,6 +104,9 @@ class AdminController extends Controller
     {
         try {
             $admin = Admin::find($id);
+            if(!$admin){
+                return session()->flash('error', __('messages.this_item_does_not_exist'));  
+            }
             $admin->update([
                 'name' => $request->name,
                 'email' => $request->email

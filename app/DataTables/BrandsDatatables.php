@@ -2,16 +2,16 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\BrandsDatatable;
+use App\Models\BrandTranslation;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use App\Models\CategoryTranslation;
 use Illuminate\Support\Facades\App;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class MainCategoryDatatables extends DataTable
+class BrandsDatatables extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,26 +23,25 @@ class MainCategoryDatatables extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.maincategories.datatables.action')
-            ->addColumn('is_active', 'dashboard.maincategories.datatables.is_active')
-            ->rawColumns(['action','is_active']);
+            ->addColumn('action', 'dashboard.brands.datatables.action')
+            ->addColumn('img', 'dashboard.brands.datatables.img')
+            ->addColumn('is_active', 'dashboard.brands.datatables.is_active')
+            ->rawColumns(['action','img','is_active']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Category $model
+     * @param \App\BrandsDatatable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query()
     {
-        // return $model->newQuery();
-        $categories = CategoryTranslation::join('categories', 'category_translations.category_id', '=', 'categories.id')
-        ->select(['categories.*', 'category_translations.*'])
-        ->whereNull('categories.parent_id')
-        ->where('category_translations.locale', App::getLocale());
+        $brands = BrandTranslation::join('brands', 'brand_translations.brand_id', '=', 'brands.id')
+        ->select(['brands.*', 'brand_translations.*'])
+        ->where('brand_translations.locale', App::getLocale());
 
-        return $this->applyScopes($categories);
+        return $this->applyScopes($brands);
     }
 
     /**
@@ -53,7 +52,7 @@ class MainCategoryDatatables extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('maincategorydatatables-table')
+                    ->setTableId('brandsdatatables-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Blfrtip')
@@ -117,15 +116,18 @@ class MainCategoryDatatables extends DataTable
     {
         return [
             Column::make('name')->title(trans('site.name')),
-            Column::make('slug')->title(trans('site.slug'))
-            ->searchable(false),
+            Column::computed('img')->title(trans('site.img'))
+                ->exportable(true)
+                ->searchable(false)
+                ->printable(true),
             Column::computed('is_active')->title(trans('site.is_active'))
-                  ->exportable(true)
-                  ->printable(true),
+                ->exportable(true)
+                ->printable(true),
             Column::computed('action')->title(trans('site.action'))
-                  ->exportable(false)
-                  ->printable(false)
-                  ->addClass('text-center'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
@@ -136,6 +138,6 @@ class MainCategoryDatatables extends DataTable
      */
     protected function filename()
     {
-        return 'MainCategoryDatatables_' . date('YmdHis');
+        return 'BrandsDatatables_' . date('YmdHis');
     }
 }

@@ -2,16 +2,15 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\TagTranslation;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use App\Models\CategoryTranslation;
 use Illuminate\Support\Facades\App;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class MainCategoryDatatables extends DataTable
+class TagDatatables extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,26 +22,23 @@ class MainCategoryDatatables extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.maincategories.datatables.action')
-            ->addColumn('is_active', 'dashboard.maincategories.datatables.is_active')
-            ->rawColumns(['action','is_active']);
+            ->addColumn('action', 'dashboard.tags.datatables.action')
+            ->rawColumns(['action']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Category $model
+     * @param \App\TagDatatable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query()
     {
-        // return $model->newQuery();
-        $categories = CategoryTranslation::join('categories', 'category_translations.category_id', '=', 'categories.id')
-        ->select(['categories.*', 'category_translations.*'])
-        ->whereNull('categories.parent_id')
-        ->where('category_translations.locale', App::getLocale());
+        $tags = TagTranslation::join('tags', 'tag_translations.tag_id', '=', 'tags.id')
+        ->select(['tags.*', 'tag_translations.*'])
+        ->where('tag_translations.locale', App::getLocale());
 
-        return $this->applyScopes($categories);
+        return $this->applyScopes($tags);
     }
 
     /**
@@ -53,7 +49,7 @@ class MainCategoryDatatables extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('maincategorydatatables-table')
+                    ->setTableId('tagdatatables-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Blfrtip')
@@ -119,9 +115,6 @@ class MainCategoryDatatables extends DataTable
             Column::make('name')->title(trans('site.name')),
             Column::make('slug')->title(trans('site.slug'))
             ->searchable(false),
-            Column::computed('is_active')->title(trans('site.is_active'))
-                  ->exportable(true)
-                  ->printable(true),
             Column::computed('action')->title(trans('site.action'))
                   ->exportable(false)
                   ->printable(false)
@@ -136,6 +129,6 @@ class MainCategoryDatatables extends DataTable
      */
     protected function filename()
     {
-        return 'MainCategoryDatatables_' . date('YmdHis');
+        return 'TagDatatables_' . date('YmdHis');
     }
 }
