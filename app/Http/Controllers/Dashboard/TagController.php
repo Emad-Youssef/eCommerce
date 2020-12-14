@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use Exception;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\DataTables\TagDatatables;
