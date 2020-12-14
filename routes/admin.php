@@ -39,13 +39,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 			Route::resource('/mainCategory', 'MainCategoryController');
 			########################## MainCategory #######
 
-			########################## MainCategory ####
+			########################## SubCategory ####
 			Route::resource('/subCategory', 'SubCategoryController');
-			########################## MainCategory #######
+			########################## SubCategory #######
 
-			########################## MainCategory ####
+			########################## brandCategory ####
 			Route::resource('/brands', 'BrandController');
-			########################## MainCategory #######
+			########################## brandCategory #######
+
+			########################## TagCategory ####
+			Route::resource('/tags', 'TagController');
+			########################## TagCategory #######
 
 			######################### settings routes #############
 			Route::group(['prefix' => 'settings'], function() {
