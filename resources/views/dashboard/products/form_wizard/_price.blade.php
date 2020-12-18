@@ -24,8 +24,8 @@
             <input type="number" id="special_price" class="form-control border-msg" name="special_price">
             <p id="error-special_price" class="error-content text-danger"></p>
         </div>
-    <!-- special_price_type -->
-     <div class="col-md-6">
+        <!-- special_price_type -->
+        <div class="col-md-6">
             <label>@lang('site.special_price_type')</label>
             <select class="form-control select2" name="special_price_type">
                     <option value="">@lang('site.choose')</option>

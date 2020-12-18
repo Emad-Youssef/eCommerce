@@ -75,6 +75,7 @@
                                         @include('dashboard.products.form_wizard._translations')
                                         @include('dashboard.products.form_wizard._general_information')
                                         @include('dashboard.products.form_wizard._price')
+                                        @include('dashboard.products.form_wizard._stock')
                                        
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"

@@ -36,7 +36,10 @@ class StoreProduct extends FormRequest
             'special_price_type' => 'nullable|required_with:special_price|in:precent,fixed',
             'special_price_start' => 'nullable|required_with:special_price|date|date_format:Y-m-d',
             'special_price_end' => 'nullable|required_with:special_price|date|date_format:Y-m-d',
-
+            'sku'  => 'nullable|min:3|max:10',
+            'manage_stock'  => 'required|in:0,1',
+            'in_stock'  => 'required|in:0,1',
+            'qty'  => 'nullable|required_if:manage_stock,==,1',
         ];
 
         foreach(config('translatable.locales') as $locale){
@@ -62,7 +65,10 @@ class StoreProduct extends FormRequest
             'special_price_type'   => __('site.special_price_type'),
             'special_price_start'   => __('site.special_price_start'),
             'special_price_end'   => __('site.special_price_end'),
-
+            'sku'      => __('site.sku'),
+            'manage_stock'      => __('site.manage_stock'),
+            'in_stock'      => __('site.in_stock'),
+            'qty'      => __('site.qty'),
         ];
 
         foreach(config('translatable.locales') as $locale){

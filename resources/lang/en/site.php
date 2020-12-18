@@ -107,6 +107,10 @@ return [
     'description_en' => 'Description Engish',
     'general_information' => 'General information',
     'translations'      => 'Translations',
+    'dont_track'  => 'Dont track',
+    'track'  => 'Track',
+    'unavailable'  => 'Unavailable',
+    'available'  => 'Available',
     // datatables
     'id'                    => 'Index',
     'action'                => 'Control',

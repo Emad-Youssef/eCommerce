@@ -107,6 +107,10 @@ return [
     'description_en' => 'الوصف انجليزي',
     'general_information' => 'معلومات عامة',
     'translations'         => 'الترجمات',
+    'dont_track'  => 'لا تتبع',
+    'track'  => 'تتبع',
+    'unavailable'  => 'غير متاح',
+    'available'  => 'متاح',
 
     // datatables
     'id'                    => 'التسلسل',
