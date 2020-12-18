@@ -33,7 +33,7 @@ class Category extends Model implements TranslatableContract
     }
 
     public function scopeMainselect($q){
-        return $q->whereNull('parent_id')->where('is_active', 1)->select('id','slug')->with('subcategories');
+        return $q->whereNull('parent_id')->where('is_active', 1);
     }
 
     public function getCreatedAtAttribute($val){

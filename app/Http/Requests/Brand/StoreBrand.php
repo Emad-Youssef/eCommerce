@@ -36,14 +36,8 @@ class StoreBrand extends FormRequest
 
     public function attributes()
     {
-        $attributes = [
+        return[
             'img'      => __('site.img')
         ];
-
-        foreach(config('translatable.locales') as $locale){
-            $rules[$locale.'.name'] = 'required|string|max:50';
-        }
-
-        return $attributes;
     }
 }

@@ -3,7 +3,7 @@
         {{ $title }}</h4>
     <div class="row">
         <div class="col-md-6">
-            <label><i class="fa fa-user"></i>@lang('site.main_categories')</label>
+            <label><i class="la la-folder-open-o"></i>@lang('site.main_categories')</label>
             <select class="form-control  border-msg" name="parent_id" id="parent_id" required>
                 <option value="">@lang('site.choose')</option>
                 @foreach($maincategories as $cate)

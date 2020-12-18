@@ -37,15 +37,9 @@ class StoreSubcategory extends FormRequest
 
     public function attributes()
     {
-        $attributes = [
+        return[
             'parent_id'      => __('site.mainCategory'),
             'slug'      => __('site.slug')
-        ];
-
-        foreach(config('translatable.locales') as $locale){
-            $rules[$locale.'.name'] = 'required|string|max:50';
-        }
-
-        return $attributes;
+        ];       
     }
 }

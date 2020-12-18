@@ -26,4 +26,8 @@ class Brand extends Model implements TranslatableContract
     public function getImg(){
         return $this->img !== null? asset('uploads/brands').'/'. $this->img: '';
     }
+
+    public function scopeActive($q){
+        return $q->where('is_active', 1);
+    }
 }

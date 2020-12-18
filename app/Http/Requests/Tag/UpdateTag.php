@@ -36,14 +36,8 @@ class UpdateTag extends FormRequest
 
     public function attributes()
     {
-        $attributes = [
+        return[
             'slug'      => __('site.slug')
         ];
-
-        foreach(config('translatable.locales') as $locale){
-            $rules[$locale.'.name'] = 'required|string|max:50';
-        }
-
-        return $attributes;
     }
 }

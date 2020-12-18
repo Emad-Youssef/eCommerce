@@ -59,7 +59,6 @@
     <link rel="stylesheet" type="text/css"
         href="{{asset('assets/admin/vendors/css/forms/toggle/bootstrap-switch.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/toggle/switchery.min.css')}}">
-    {{-- @notify_css --}}
     @stack('style')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
     <style>
@@ -83,12 +82,11 @@
     @yield('content')
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     @include('dashboard.includes.footer')
-    {{-- @notify_js --}}
-    {{-- @notify_render --}}
 
     <!-- BEGIN VENDOR JS-->
     <script src="{{asset('assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
+    @stack('form_wizard')
     <script src="{{asset('assets/admin/vendors/js/forms/select/select2.full.min.js')}}" type="text/javascript"></script>
 
     <script src="{{asset('assets/admin/vendors/js/tables/datatable/datatables.min.js')}}" type="text/javascript">

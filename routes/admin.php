@@ -51,6 +51,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 			Route::resource('/tags', 'TagController');
 			########################## tags #######
 
+			######################### products routes #############
+			Route::group(['prefix' => 'products'], function() {
+				// products routs
+				Route::get('/', 'ProductController@index')->name('products.index');
+				Route::get('/create', 'ProductController@create')->name('products.create');
+				Route::post('/store', 'ProductController@store')->name('products.store');
+				Route::get('/edit/{id}', 'ProductController@edit')->name('products.edit');
+				Route::post('/destroy/{id}', 'ProductController@destroy')->name('products.destroy');
+			});
+			######################### products routes #############
+
 			######################### settings routes #############
 			Route::group(['prefix' => 'settings'], function() {
 				// shipping routs
