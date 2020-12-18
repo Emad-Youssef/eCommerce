@@ -1,25 +1,14 @@
 <!-- Step 1 -->
-<h6>@lang('site.general_information')</h6>
+<h6>@lang('site.translations')</h6>
 <fieldset data-pos="steps-uid-0-t-0">
-    <!-- slug -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="error-slug">@lang('site.slug')</label>
-                <input type="text" id="slug" class="form-control border-msg " name="slug"
-                    value="{{ isset($product)?$product->slug:'' }}">
-                <p id="error-slug" class="error-content text-danger"></p>
-            </div>
-        </div>
-    </div>
     <!-- product name -->
     <div class="row">
         @foreach(config('translatable.locales') as $locale)
         <div class="col-md-6">
             <div class="form-group">
-                <label for="error-{{$locale}}name">@lang('site.name_'.$locale)</label>
+                <label for="error-{{$locale}}name">@lang('site.name_'.$locale)<span class="text-danger">*</span></label>
                 <input type="text" id="{{$locale}}name" class="form-control border-msg" name="{{$locale}}[name]"
-                    value="{{ isset($product)?@$product->translate($locale)->name:'' }}">
+                    value="{{ isset($product)??@$product->translate($locale)->name }}" required>
                 <p id="error-{{$locale}}name" class="error-content text-danger"></p>
             </div>
         </div>
@@ -43,9 +32,9 @@
         @foreach(config('translatable.locales') as $locale)
         <div class="col-md-12">
             <div class="form-group">
-                <label for="error-{{$locale}}description">@lang('site.description_'.$locale)</label>
+                <label for="error-{{$locale}}description">@lang('site.description_'.$locale)<span class="text-danger">*</span></label>
                 <textarea class="ckeditor"
-                    name="{{$locale}}[description]">{{ isset($product)?@$product->translate($locale)->description:'' }}</textarea>
+                    name="{{$locale}}[description]" required>{{ isset($product)?@$product->translate($locale)->description:'' }}</textarea>
                 <p id="error-{{$locale}}description" class="error-content text-danger"></p>
             </div>
         </div>

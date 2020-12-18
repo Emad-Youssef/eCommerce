@@ -106,6 +106,7 @@ return [
     'description_ar' => 'الوصف عربي',
     'description_en' => 'الوصف انجليزي',
     'general_information' => 'معلومات عامة',
+    'translations'         => 'الترجمات',
 
     // datatables
     'id'                    => 'التسلسل',

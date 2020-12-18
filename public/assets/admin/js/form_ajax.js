@@ -91,6 +91,28 @@ formProduct.steps({
         next: Snext,
         previous: Sprevious,
     },
+    onStepChanging: function (event, currentIndex, newIndex){
+     
+       if(currentIndex == 0 && $('#arname').val() < 1){
+            $('#arname').addClass('has_error')
+            return false;
+        }else if(currentIndex == 0 && $('#enname').val() < 1){
+            $('#enname').addClass('has_error')
+            return false;
+        }else if(currentIndex == 1 && $('#slug').val() < 2){
+            $('#slug').addClass('has_error')
+            return false;
+        }else if(currentIndex == 2 && $('#price').val() < 2){
+            $('#price').addClass('has_error')
+            return false;
+        }else if(currentIndex == 2 && $('#selling_price').val() < 2){
+            $('#selling_price').addClass('has_error')
+            return false;
+        }else{
+            $('.border-msg').removeClass('has_error')
+            return true;
+        }
+    },
     onFinished: function (event, currentIndex) {
         event.preventDefault()
         for (instance in CKEDITOR.instances) {
@@ -100,7 +122,6 @@ formProduct.steps({
         var dataSend = new FormData(this);
         var old_color = "#666EE8";
         $('.steps a .step').css("border-color",old_color)
-        console.log(old_color)
         $.ajax({
             url     : route,
             type    : 'post',
@@ -123,7 +144,6 @@ formProduct.steps({
                         $('#'+newKey).addClass('has_error');
                         var noty_id = $('#error-'+newKey).parents('fieldset').data('pos');
                         $('#'+noty_id+' .step').css("border-color", "#FF4961");
-                        console.log(noty_id);
                     });
                 }else {
                     alert(errors.status)

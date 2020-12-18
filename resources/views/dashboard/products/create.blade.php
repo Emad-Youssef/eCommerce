@@ -72,10 +72,11 @@
                                         enctype="multipart/form-data" data-previous="{{__('site.previous')}}"
                                         data-next="{{__('site.next')}}" data-save="{{__('site.save')}}">
                                         @csrf
-                                        @include('dashboard.products.form_wizard._step1')
-                                        @include('dashboard.products.form_wizard._step2')
+                                        @include('dashboard.products.form_wizard._translations')
+                                        @include('dashboard.products.form_wizard._general_information')
+                                        @include('dashboard.products.form_wizard._price')
                                        
-                                        <!-- <div class="form-actions">
+                                        <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                 onclick="history.back();">
                                                 <i class="ft-x"></i> @lang('site.retreat')
@@ -83,7 +84,7 @@
                                             <button type="submit" disabled="true" class="btn btn-primary mr-1">
                                                 <i class="ft-check"></i> @lang('site.save')
                                             </button>
-                                        </div> -->
+                                        </div>
                                     </form>
                                 </div>
                             </div>

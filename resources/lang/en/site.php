@@ -106,6 +106,7 @@ return [
     'description_ar' => 'Description Arabic',
     'description_en' => 'Description Engish',
     'general_information' => 'General information',
+    'translations'      => 'Translations',
     // datatables
     'id'                    => 'Index',
     'action'                => 'Control',
