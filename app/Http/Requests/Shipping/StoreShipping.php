@@ -36,10 +36,14 @@ class StoreShipping extends FormRequest
 
     public function attributes()
     {
-        return [
-            'en.value' => __('site.name_en'),
-            'ar.value' => __('site.name_ar'),
+        $attributes = [
             'plain_value' => __('site.value')
         ];
+
+        foreach(config('translatable.locales') as $locale){
+            $attributes[$locale.'.value'] = __('site.name_'.$locale);
+        }
+
+        return $attributes;
     }
 }

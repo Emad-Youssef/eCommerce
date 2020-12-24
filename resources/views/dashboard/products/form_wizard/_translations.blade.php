@@ -1,6 +1,6 @@
 <!-- Step 1 -->
 <h6>@lang('site.translations')</h6>
-<fieldset data-pos="steps-uid-0-t-0">
+<fieldset data-pos="form-file-upload-t-0">
     <!-- product name -->
     <div class="row">
         @foreach(config('translatable.locales') as $locale)

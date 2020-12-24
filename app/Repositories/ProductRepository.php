@@ -14,11 +14,6 @@ class ProductRepository implements RepositoryInterface
         return $this->model = $model;
     }
 
-    public function all($brand)
-    {
-       
-    }
-
     public function store(array $data)
     {
         //

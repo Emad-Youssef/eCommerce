@@ -24,7 +24,7 @@ class StoreSubcategory extends FormRequest
     public function rules()
     {
         $rules = [
-            'parent_id' => 'required',
+            'parent_id' => 'required|exists:categories,id',
             'slug'  => 'required|string|unique:categories,slug|regex:/(^([a-zA-Z0-9-]+)(\d+)?$)/u|min:2|max:50',
         ];
 
@@ -37,9 +37,14 @@ class StoreSubcategory extends FormRequest
 
     public function attributes()
     {
-        return[
+        $attributes = [
             'parent_id'      => __('site.mainCategory'),
             'slug'      => __('site.slug')
-        ];       
+        ]; 
+        foreach(config('translatable.locales') as $locale){
+            $attributes[$locale.'.name'] = __('site.name_'.$locale);
+        }
+
+        return $attributes;
     }
 }

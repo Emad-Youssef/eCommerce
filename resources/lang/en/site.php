@@ -111,6 +111,9 @@ return [
     'track'  => 'Track',
     'unavailable'  => 'Unavailable',
     'available'  => 'Available',
+    'can_upload_more' => 'You can upload more than one image here',
+    'images'    => 'Images',
+    'img_problem_found' => 'The image is not found, a problem occurred during the upload',
     // datatables
     'id'                    => 'Index',
     'action'                => 'Control',

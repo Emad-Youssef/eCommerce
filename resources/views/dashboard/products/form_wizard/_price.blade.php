@@ -1,6 +1,6 @@
 <!-- Step 3 -->
 <h6>@lang('site.price')</h6>
-<fieldset data-pos="steps-uid-0-t-2">
+<fieldset data-pos="form-file-upload-t-2">
     <div class="row">
         <!-- price -->
         <div class="col-md-6">
@@ -46,8 +46,8 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label for="date1">@lang('site.special_price_end') :</label>
-                <input type="date" name="special_price_end" class="form-control" id="date1">
+                <label for="date2">@lang('site.special_price_end') :</label>
+                <input type="date" name="special_price_end" class="form-control" id="date2">
                 <p id="error-special_price_end" class="error-content text-danger"></p>
             </div>
         </div>

@@ -102,6 +102,9 @@ formProduct.steps({
         }else if(currentIndex == 1 && $('#slug').val() < 2){
             $('#slug').addClass('has_error')
             return false;
+        }else if(currentIndex == 1 && !$('#categories .selectize-control .item').length){
+            $('#categories').addClass('has_error')
+            return false;
         }else if(currentIndex == 2 && $('#price').val() < 2){
             $('#price').addClass('has_error')
             return false;

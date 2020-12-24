@@ -55,6 +55,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 			Route::group(['prefix' => 'products'], function() {
 				// products routs
 				Route::get('/', 'ProductController@index')->name('products.index');
+				Route::post('/uploadImages', 'ProductController@uploadImages')->name('products.uploadImages');
+				Route::post('/deleteImages', 'ProductController@deleteImages')->name('products.deleteImages');
 				Route::get('/create', 'ProductController@create')->name('products.create');
 				Route::post('/store', 'ProductController@store')->name('products.store');
 				Route::get('/edit/{id}', 'ProductController@edit')->name('products.edit');

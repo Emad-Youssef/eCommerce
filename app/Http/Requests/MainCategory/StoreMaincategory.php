@@ -36,9 +36,14 @@ class StoreMaincategory extends FormRequest
 
     public function attributes()
     {
-        return [
+        $attributes =  [
             'slug'      => __('site.slug')
         ];
+        foreach(config('translatable.locales') as $locale){
+            $attributes[$locale.'.name'] = __('site.name_'.$locale);
+        }
+
+        return $attributes;
 
     }
 }

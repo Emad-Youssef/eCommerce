@@ -1,6 +1,6 @@
 <!-- Step 4 -->
 <h6>@lang('site.manage_stock')</h6>
-<fieldset data-pos="steps-uid-0-t-3">
+<fieldset data-pos="form-file-upload-t-3">
     <div class="row">
        <!-- sku -->
        <div class="col-md-6">

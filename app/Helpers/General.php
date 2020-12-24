@@ -2,6 +2,14 @@
 
 
 use App\Models\Category;
+// dir style
+if(!function_exists('getFolder')){
+  function getFolder()
+  {
+      return app()->getLocale() == 'ar' ? 'css-rtl' : 'css';
+  }
+}
+
 
 // get parent category for subcategories in datatables
 if(!function_exists('getParent')){

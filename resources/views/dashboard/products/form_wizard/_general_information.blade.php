@@ -1,6 +1,6 @@
 <!-- Step 2 -->
 <h6>@lang('site.general_information')</h6>
-<fieldset data-pos="steps-uid-0-t-1">
+<fieldset data-pos="form-file-upload-t-1">
 <!-- slug & brand-->
     <div class="row">
         <div class="col-md-6">
@@ -27,7 +27,7 @@
     <!-- categories &  tags-->
     <div class="row">
      <!-- categories -->
-        <div class="col-md-6">
+        <div class="col-md-6" id="categories">
             <label><i class="la la-folder-open-o"></i>@lang('site.main_categories')<span class="text-danger">*</span></label>
             
             <select class="selectize-multiple required categories" name="categories[]" multiple>

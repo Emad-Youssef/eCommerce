@@ -1,0 +1,222 @@
+a.icon,
+ span.icon {
+     text-indent: -1000em;
+     overflow: hidden;
+ }
+ li {
+    list-style: none;
+}
+form.adding .fblock > div.label.fleft + div {
+    margin-right: 206px;
+}
+ .icon.add2 {
+     width: 31px;
+     height: 30px;
+     background-position: -230px -143px;
+     background-image: url(2f2758672707a9433b666350a2745068d8.png);
+ }
+ a:hover .icon.add2 {
+     background-position: -261px -143px;
+ }
+
+ .icon.mini.remove3 {
+     width: 23px;
+     height: 23px;
+     background-position: -230px -173px;
+     z-index: 9999;
+     background-image: url(2f2758672707a9433b666350a2745068d8.png);
+ }
+ .clr:after {
+     clear: both;
+     content: ".";
+     display: block;
+     height: 0;
+     overflow: hidden;
+     visibility: hidden;
+ }
+ .clrleft {
+     clear: right;
+ }
+ #gallery .icon.photoslabel {
+    left: -5px;
+    right: auto;
+    top: 100%;
+}
+.paymanageinfo #gallery .icon.photoslabel {
+    right: -133px;
+    left: auto;
+    top: 53px;
+}
+.icon.photoslabel {
+    width: 122px;
+    height: 60px;
+    background: url(2f9c0e8e081f80aada361f71386b04ff01.png) no-repeat 0 0;
+}
+ .fleft {
+     float: right;
+ }
+ 
+ .tcenter {
+     text-align: center;
+ }
+
+ 
+ .rel {
+     position: relative;
+ }
+ 
+ .abs {
+     position: absolute;
+ }
+ 
+ .fix {
+     position: fixed;
+ }
+
+ .block {
+     display: block;
+ }
+  
+ 
+ .margin0_a {
+     margin: 0 auto;
+ }
+ 
+ .margin0 {
+     margin: 0px !important;
+ }
+ 
+  .hidden {
+     display: none;
+ }
+.photos-show-mini {
+    width: 100%;
+}
+.photos-show-mini li {
+    line-height: 0;
+    margin: 0 0 13px 5px;
+}
+.photos-show-mini li.empty {
+    padding: 3px 5px;
+    margin-left: 6px;
+    margin-right: 0;
+}
+.photos-show-mini .row div:first-child li.empty > div {
+    background: #8ca777;
+    border: 1px dashed #7b9466;
+}
+.photos-show-mini li.empty > div {
+    margin: 0 0 0;
+    background: #f4f4f4;
+    border: 1px dashed #cbd2d7;
+}
+.photos-show-mini li.empty > div > a{
+    width: 87px;
+    height: 72px;
+    border: 1px solid #fff;
+}
+
+.photos-show-mini .fileupload {
+    display: none;
+}
+
+.photos-show-mini .open-file {
+    cursor: pointer !important;
+}
+
+.photos-show-mini li.with-photo {
+    min-height: 82px;
+}
+.photos-show-mini li.with-photo > div {
+    width: 100px;
+    height: 78px;
+    display: table-cell;
+    vertical-align: middle;
+    border: 1px solid #cbd2d7;
+    background: #fff;
+}
+.photos-show-mini li.with-photo:hover > div {
+    box-shadow: -1px 1px 4px -1px rgba(0, 0, 0, 0.25);
+}
+.photos-show-mini.ui-sortable li.with-photo > div {
+    cursor: move;
+}
+.photos-show-mini li.with-photo.first-child > div {
+    width: 100px;
+    border: 1px solid #b6cca2;
+    background: #E8F4DE;
+}
+.photos-show-mini li.with-photo img {
+    border: 3px solid #fff;
+    display: block;
+    margin: auto;
+     width: 95% !important;
+     max-height: 95% !important;
+}
+.photos-show-mini li.with-photo.first-child img {
+    border: 3px solid #e8f4de;
+}
+.photos-show-mini a .icon.add2 {
+    top: 21px;
+}
+.photos-show-mini .icon.remove3 {
+    display: none;
+    left: -5px;
+    right: auto;
+    top: -9px;
+}
+.photos-show-mini li.with-photo:hover .icon.vis.remove3 {
+    display: block;
+}
+.suggest.photos {
+    background: #e8f4de;
+    color: #528425;
+    text-shadow: 0 1px 0 #fff;
+}
+.suggest.photos .icon.info2 {
+    right: 20px;
+}
+
+.icon.info2 { 
+    width: 20px;
+    height: 20px;
+    background-position: -218px -29px; background-image: url(2f2758672707a9433b666350a2745068d8.png); 
+}
+
+div.suggest {
+    background: #f1f5fc;
+    padding: 7px 40px 7px 10px;
+    top: -3px;
+    right: 100%;
+    left: auto;
+    width: 244px;
+    min-height: 20px;
+
+}
+form.adding div.suggest {
+    background: #e8f4de;
+    color: #528425;
+}
+#box-fileupload {
+    width: 100%;
+}
+#box-fileupload:hover #suggest{
+    display: block;
+}
+#first-photo-suggest p {
+    font-size: 12px;
+    font-weight: bold;
+}
+#suggest #photo-errors {
+    background: #c91414;
+    text-shadow: 0 1px 0 #fff;
+    color: #fff;
+}
+#suggest #photo-errors .fa-info{
+    position: absolute;
+    right: 25px;
+    top: 10px;
+}
+.marginbott5 {
+    margin-bottom: 5px !important;
+}

@@ -3,24 +3,16 @@
 @push('style')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/selects/selectize.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/selects/selectize.default.css')}}">
-@if(app()->getLocale() == 'ar')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/plugins/forms/wizard.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/plugins/pickers/daterange/daterange.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/plugins/forms/selectize/selectize.css')}}">
 
-@else
-<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/plugins/forms/wizard.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/plugins/pickers/daterange/daterange.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/plugins/forms/selectize/selectize.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/forms/wizard.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/pickers/daterange/daterange.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/forms/selectize/selectize.css')}}">
 
-@endif
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/file-uploaders/dropzone.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/file-uploaders/dropzone.css')}}">
 <style>
 .has_error {
     border: 1px solid red !important;
-}
-
-#arname {
-    direction: rtl;
 }
 </style>
 @endpush
@@ -67,7 +59,7 @@
                                     @include('dashboard.includes.alerts.success')
                                     @include('dashboard.includes.alerts.error')
                                     
-                                    <form class="number-tab-steps wizard-circle"
+                                    <form class="number-tab-steps wizard-circle" id="form-file-upload"
                                         data-action="{{ route('admin.products.store') }}" method="POST"
                                         enctype="multipart/form-data" data-previous="{{__('site.previous')}}"
                                         data-next="{{__('site.next')}}" data-save="{{__('site.save')}}">
@@ -76,6 +68,7 @@
                                         @include('dashboard.products.form_wizard._general_information')
                                         @include('dashboard.products.form_wizard._price')
                                         @include('dashboard.products.form_wizard._stock')
+                                        @include('dashboard.products.form_wizard._images')
                                        
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
@@ -102,9 +95,8 @@
 @endsection
 
 @push('form_wizard')
-
+<script src="{{asset('assets/admin/vendors/js/extensions/dropzone.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/editors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
-
 <script src="{{asset('assets/admin/vendors/js/extensions/jquery.steps.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/pickers/dateTime/moment-with-locales.min.js')}}" type="text/javascript">
 </script>
@@ -113,12 +105,7 @@
 @endpush
 
 @push('script')
-
-
 <script src="{{asset('assets/admin/js/form_ajax.js')}}"></script>
 <script src="{{asset('assets/admin/js/scripts/forms/select/form-selectize.js')}}" type="text/javascript"></script>
-
 <script src="{{asset('assets/admin/js/scripts/editors/editor-ckeditor.js')}}" type="text/javascript"></script>
-
-
 @endpush

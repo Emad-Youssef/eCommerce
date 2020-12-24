@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Tag;
 use App\Models\Brand;
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -50,11 +51,13 @@ class ProductController extends Controller
            
             DB::beginTransaction();
             
-            $product = Product::create($request->except('_token','categories','tags'));
+            $product = Product::create($request->except('_token','categories','tags','images'));
            
-            if($product){
+            if($product && $request->has('images')){
                 $product->categories()->attach($request->categories);
                 $product->tags()->attach($request->tags);
+                // save images in database
+                 $this->createImages($product->id,$request->images);
             }
 
             DB::commit();
@@ -71,33 +74,32 @@ class ProductController extends Controller
 
     }
 
-    
     //to save images to folder only
-    // public function saveProductImages(Request $request)
-    // {
-    //     $path = public_path('assets/images/products/');
-    //     if (!file_exists($path)) {
-    //          mkdir($path, 0777, true);
-    //     }
-    //     $file = $request->file('dzfile');
-    //     $filename = uploadImage('products', $file);
-    //     return response()->json([
-    //     'name' => $filename,
-    //     'original_name' => $file->getClientOriginalName(),
-    //     ]);
-    // }
-    // public function deleteProductImages(Request $request)
-    // {
-    //     echo $_POST['id'] . ' deleted';
-    //     $file = $request->file('dzfile');
-    //     $or = $file->getClientOriginalName();
-    //     $path = public_path('assets/images/products/') . $or;
-    //     if (file_exists($path)) {
-    //     unlink($path);
-    //     }
-    // }
+    public function uploadImages(Request $request) {
+        $file = $request->file('dzfile');
+        $filename = uploadImage('products', $file);
+        return response()->json([
+            'name' => $filename,
+            'org_name' => $file,
+        ]);
+    }
 
+    //to delete images from folder only
+    public function deleteImages(Request $request) {
+        deleteImage('uploads/products/',$request->fileName);
+    }
 
+    public function createImages($id, $files){
+        foreach($files as $file){
+            Image::Create([
+                'product_id' => $id,
+                'img' => $file
+            ]);
+        }
+    }
+    
+   
+   
     // public function edit($id)
     // {
     // //get specific categories and its translations

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Product;
 
+use App\Rules\Images\CheckImage;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProduct extends FormRequest
@@ -24,7 +25,7 @@ class StoreProduct extends FormRequest
     public function rules()
     {
         $rules = [
-            'slug'  => 'required|string|unique:products,slug|regex:/(^([a-zA-Z0-9-]+)(\d+)?$)/u|min:2|max:50',
+            'slug'  => 'required|string|unique:products,slug|regex:/(^([a-zA-Z0-9-]+)(\d+)?$)/u|min:2|max:150',
             'brand_id' => 'nullable|exists:brands,id',
             'categories' => 'array|min:1|required',
             'categories.*' => 'numeric|exists:categories,id',
@@ -40,12 +41,14 @@ class StoreProduct extends FormRequest
             'manage_stock'  => 'required|in:0,1',
             'in_stock'  => 'required|in:0,1',
             'qty'  => 'nullable|required_if:manage_stock,==,1',
+            'images'  => 'required|array|min:1',
+            'images.*'  => [new CheckImage('uploads/products/')],
         ];
 
         foreach(config('translatable.locales') as $locale){
             $rules[$locale.'.name'] = 'required|string|max:100';
             $rules[$locale.'.short_description'] = 'nullable|string|max:500';
-            $rules[$locale.'.description'] = 'required|string|max:2000';
+            $rules[$locale.'.description'] = 'required|string|max:3000';
         }
 
         return $rules;
@@ -69,6 +72,7 @@ class StoreProduct extends FormRequest
             'manage_stock'      => __('site.manage_stock'),
             'in_stock'      => __('site.in_stock'),
             'qty'      => __('site.qty'),
+            'images'      => __('site.images'),
         ];
 
         foreach(config('translatable.locales') as $locale){

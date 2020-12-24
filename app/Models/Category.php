@@ -33,7 +33,11 @@ class Category extends Model implements TranslatableContract
     }
 
     public function scopeMainselect($q){
-        return $q->whereNull('parent_id')->where('is_active', 1);
+        return $q->whereNull('parent_id');
+    }
+
+    public function scopeActive($q){
+        return $q->where('is_active', '1');
     }
 
     public function getCreatedAtAttribute($val){
