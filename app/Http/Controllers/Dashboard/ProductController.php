@@ -53,7 +53,7 @@ class ProductController extends Controller
             
             $product = Product::create($request->except('_token','categories','tags','images'));
            
-            if($product && $request->has('images')){
+            if($product){
                 $product->categories()->attach($request->categories);
                 $product->tags()->attach($request->tags);
                 // save images in database
@@ -72,6 +72,22 @@ class ProductController extends Controller
             return session()->flash('error', __('messages.general_error'));
         }
 
+    }
+
+    public function edit($id)
+    {
+        $title = __('site.edit_product');
+        $product = Product::selection()->find($id);
+        if(!$product){
+            session()->flash('error', __('messages.this_item_does_not_exist'));
+            return back();
+        }
+        $data = [];
+        $data['brands'] = Brand::active()->select('id')->get();
+        $data['tags'] = Tag::select('id')->get();
+        $data['categories'] = Category::mainselect()->select('id')->get();
+         return $product;
+        return view($this->model_view_folder.'.edit', compact('title','product'), $data);
     }
 
     //to save images to folder only
@@ -97,6 +113,8 @@ class ProductController extends Controller
             ]);
         }
     }
+
+
     
    
    
@@ -112,34 +130,35 @@ class ProductController extends Controller
     //     return redirect()->route('admin.products')->with(['error' => 'هذا القسم غير موجود ']);
     //     return view('admin.products.general.edit', $data);
     //     }
-    //     public function update($id, MainCategoryRequest $request)
-    //     {
-    //     try {
-    //     //validation
-    //     //update DB
-    //     $product = Product::find($id);
-    //     if (!$product)
-    //     return redirect()->route('admin.products')->with(['error' => 'هذا القسم غير موجود']);
-    //     if (!$request->has('is_active'))
-    //     $request->request->add(['is_active' => 0]);
-    //     else
-    //     $request->request->add(['is_active' => 1]);
-    //     $product->update($request->all());
-    //     //save translations
-    //     //save translations
-    //     $product->name = $request->name;
-    //     $product->description = $request->description;
-    //     $product->short_description = $request->short_description;
-    //     $product->save();
-    //     //save product categories
-    //     ;
-    //     $product->categories()->attach($request->category_id);
-    //     $product->tags()->attach($request->tags);
-    //     return redirect()->route('admin.products')->with(['success' => 'تم ألتحديث بنجاح']);
-    //     } catch (\Exception $ex) {
-    //     return redirect()->route('admin.products')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-    //     }
-    //     }
+        public function update($id, Request $request)
+        {
+            dd($request->all());
+            try {
+            //validation
+            //update DB
+            $product = Product::find($id);
+            if (!$product)
+            return redirect()->route('admin.products')->with(['error' => 'هذا القسم غير موجود']);
+            if (!$request->has('is_active'))
+            $request->request->add(['is_active' => 0]);
+            else
+            $request->request->add(['is_active' => 1]);
+            $product->update($request->all());
+            //save translations
+            //save translations
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->short_description = $request->short_description;
+            $product->save();
+            //save product categories
+            ;
+            $product->categories()->attach($request->category_id);
+            $product->tags()->attach($request->tags);
+            return redirect()->route('admin.products')->with(['success' => 'تم ألتحديث بنجاح']);
+            } catch (\Exception $ex) {
+            return redirect()->route('admin.products')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+            }
+        }
     //     public function destroy($id)
     //     {
     //     try {

@@ -60,6 +60,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 				Route::get('/create', 'ProductController@create')->name('products.create');
 				Route::post('/store', 'ProductController@store')->name('products.store');
 				Route::get('/edit/{id}', 'ProductController@edit')->name('products.edit');
+				Route::put('/update/{id}', 'ProductController@update')->name('products.update');
 				Route::post('/destroy/{id}', 'ProductController@destroy')->name('products.destroy');
 			});
 			######################### products routes #############

@@ -37,3 +37,15 @@ if(!function_exists('deleteImage')){
   }
 
 }
+
+// for edit product form
+if(!function_exists('selectRelationship')){
+  function selectRelationship($array, $id){
+    $relationship_array =  [];
+    foreach($array as $rel){
+        $relationship_array[] = $rel->id;
+    }
+    return in_array($id,$relationship_array)?'selected':'' ;
+  
+  }
+}

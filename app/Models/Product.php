@@ -45,9 +45,7 @@ class Product extends Model
     ];
 
     public function images(){
-
         return $this->hasMany('App\Models\Image', 'product_id');
-
     }
 
     public function brand()
@@ -64,4 +62,9 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Models\Tag','product_tags');
     }
+
+    public function scopeSelection($q){
+      return $q->with(['images:id,product_id,img','categories:id','tags:id']);
+    }
+
 }

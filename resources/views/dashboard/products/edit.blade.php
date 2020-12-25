@@ -1,14 +1,20 @@
 @extends('layouts.admin')
 @section('title', $title)
 @push('style')
-    <style>
-        .has_error{
-            border: 1px solid red !important;
-        }
-        #arname {
-            direction: rtl;
-        }
-    </style>
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/selects/selectize.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/forms/selects/selectize.default.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/forms/wizard.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/pickers/daterange/daterange.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/forms/selectize/selectize.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/file-uploaders/dropzone.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/file-uploaders/dropzone.css')}}">
+<style>
+.has_error {
+    border: 1px solid red !important;
+}
+</style>
 @endpush
 @section('content')
 <div class="app-content content">
@@ -20,7 +26,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}">{{__('site.homepage')}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.tags.index')}}">{{__('site.tags')}}</a>
+                            <li class="breadcrumb-item"><a href="{{route('admin.products.index')}}">{{__('site.products')}}</a>
                             </li>
                             <li class="breadcrumb-item active"> {{$title}}
                             </li>
@@ -51,11 +57,16 @@
                                 <div class="card-body">
                                     @include('dashboard.includes.alerts.success')
                                     @include('dashboard.includes.alerts.error')
-                                    <form id="form-ajax" class="form" data-action="{{ route('admin.tags.update',$tag->id) }}" method="POST"
-                                        enctype="multipart/form-data">
+                                    <form class="number-tab-steps wizard-circle" id="form-file-upload" data-action="{{ route('admin.products.update',$product->id) }}" method="POST"
+                                        enctype="multipart/form-data" data-previous="{{__('site.previous')}}"
+                                        data-next="{{__('site.next')}}" data-save="{{__('site.save')}}">
                                         @csrf
                                         {{ method_field('put') }}
-                                        @include('dashboard.tags._form')
+                                        @include('dashboard.products.form_wizard._translations')
+                                        @include('dashboard.products.form_wizard._general_information')
+                                        @include('dashboard.products.form_wizard._price')
+                                        @include('dashboard.products.form_wizard._stock')
+                                        @include('dashboard.products.form_wizard._images')
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                 onclick="history.back();">
@@ -80,6 +91,18 @@
 
 @endsection
 
+@push('form_wizard')
+<script src="{{asset('assets/admin/vendors/js/extensions/dropzone.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/editors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/extensions/jquery.steps.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/pickers/dateTime/moment-with-locales.min.js')}}" type="text/javascript">
+</script>
+<script src="{{asset('assets/admin/vendors/js/pickers/daterange/daterangepicker.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/vendors/js/forms/select/selectize.min.js')}}" type="text/javascript"></script>
+@endpush
+
 @push('script')
 <script src="{{asset('assets/admin/js/form_ajax.js')}}"></script>
+<script src="{{asset('assets/admin/js/scripts/forms/select/form-selectize.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/js/scripts/editors/editor-ckeditor.js')}}" type="text/javascript"></script>
 @endpush

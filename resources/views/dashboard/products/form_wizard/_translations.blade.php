@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label for="error-{{$locale}}name">@lang('site.name_'.$locale)<span class="text-danger">*</span></label>
                 <input type="text" id="{{$locale}}name" class="form-control border-msg" name="{{$locale}}[name]"
-                    value="{{ isset($product)??@$product->translate($locale)->name }}" required>
+                    value="{{ isset($product)?@$product->translate($locale)->name:'' }}" required>
                 <p id="error-{{$locale}}name" class="error-content text-danger"></p>
             </div>
         </div>
