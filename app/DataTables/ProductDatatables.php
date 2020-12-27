@@ -24,8 +24,9 @@ class ProductDatatables extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', 'dashboard.products.datatables.action')
+            ->addColumn('categories', 'dashboard.products.datatables.categories')
             ->addColumn('is_active', 'dashboard.products.datatables.is_active')
-            ->rawColumns(['action','is_active']);
+            ->rawColumns(['action','categories','is_active']);
     }
 
     /**
@@ -37,7 +38,7 @@ class ProductDatatables extends DataTable
     public function query()
     {
         $products = ProductTranslation::join('products', 'product_translations.product_id', '=', 'products.id')
-        ->select(['products.*', 'product_translations.*'])
+        ->select(['products.id','products.is_active','products.price','products.selling_price', 'product_translations.*'])
         ->where('product_translations.locale', App::getLocale());
 
         return $this->applyScopes($products);
@@ -115,9 +116,18 @@ class ProductDatatables extends DataTable
     {
         return [
             Column::make('name')->title(trans('site.name')),
+            Column::make('price')->title(trans('site.price'))
+            ->searchable(false),
+            Column::make('selling_price')->title(trans('site.selling_price'))
+            ->searchable(false),
+            Column::computed('categories')->title(trans('site.categories'))
+            ->exportable(true)
+            ->printable(true)
+            ->searchable(false),
             Column::computed('is_active')->title(trans('site.is_active'))
                 ->exportable(true)
                 ->printable(true),
+            Column::make('created_at')->title(trans('site.created_at')),
             Column::computed('action')->title(trans('site.action'))
                 ->exportable(false)
                 ->printable(false)

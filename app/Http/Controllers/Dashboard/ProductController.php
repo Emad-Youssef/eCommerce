@@ -30,9 +30,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(ProductDatatables $tag)
+    public function index(ProductDatatables $product)
     {
-        return $tag->render($this->model_view_folder.'.index');
+        return $product->render($this->model_view_folder.'.index');
     }
 
 

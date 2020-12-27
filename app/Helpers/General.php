@@ -1,22 +1,11 @@
 <?php
 
-
-use App\Models\Category;
 // dir style
 if(!function_exists('getFolder')){
   function getFolder()
   {
       return app()->getLocale() == 'ar' ? 'css-rtl' : 'css';
   }
-}
-
-
-// get parent category for subcategories in datatables
-if(!function_exists('getParent')){
-    function getParent($id){
-      $parent = Category::select(['id','slug'])->find($id);
-      return $parent->name;
-    }
 }
 
 // upload file
