@@ -1,3 +1,10 @@
+@push('style')
+<style>
+.dz-image img{
+    width: 100% !important;
+}
+</style>
+@endpush
 <!-- Step 3 -->
 <h6>@lang('site.images')</h6>
 <fieldset data-pos="form-file-upload-t-4">
@@ -65,22 +72,31 @@ Dropzone.options.dpzMultipleFiles = {
             },
             // success: function(data){
             //     // var rep = JSON.parse(data);
-            //     // console.log(data)
+            //     console.log(data)
             // }
         });
     }
     ,
     // previewsContainer: "#dpz-btn-select-files", // Define the container to display the previews
     init: function () {
-        @if(isset($event) && $event->document)
-            var files =
-            {!! json_encode($event->document) !!}
-                for (var i in files) {
-                var file = files[i]
-                this.options.addedfile.call(this, file)
-                file.previewElement.classList.add('dz-complete')
-                $('#form-file-upload').append('<input type="hidden" name="images[]" value="' + file.file_name + '">')
-            }
+        myDropzone = this;
+        @if(isset($product))
+            @foreach($product->images as $file)
+                var mockFile = {name: "{{$file->img}}", fid: "{{$file->id}}", size: 0, status: 'success'};
+                myDropzone.emit("addedfile", mockFile);
+                myDropzone.emit("thumbnail", mockFile, "{{asset('uploads/products').'/'.$file->img}}");
+                myDropzone.emit("complete", mockFile);
+                $('#form-file-upload').append(`<input id="file-{{$file->id}}" type="hidden" name="old_images[]"/>`)
+            @endforeach
+            this.on("removedfile", function (file) {
+                var fileId = 'file-'+file.fid;
+                $('#form-file-upload #'+fileId).remove();
+                $.post({
+                    url: "{{ route('admin.products.deleteImages') }}",
+                    data: {fileName: file.name , fid:file.fid, _token: $('[name="_token"]').val()},
+                    dataType: 'json',
+                });
+            });
         @endif
     }
 }

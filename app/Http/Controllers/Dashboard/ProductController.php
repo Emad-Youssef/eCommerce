@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\ProductDatatables;
 use App\Http\Requests\Product\StoreProduct;
+use App\Http\Requests\Product\UpdateProduct;
 
 class ProductController extends Controller
 {
@@ -74,20 +75,52 @@ class ProductController extends Controller
 
     }
 
+    // edit page
     public function edit($id)
     {
-        $title = __('site.edit_product');
         $product = Product::selection()->find($id);
         if(!$product){
             session()->flash('error', __('messages.this_item_does_not_exist'));
             return back();
         }
         $data = [];
+        $data['title'] = __('site.edit_product');
+        $data['product'] = $product;
         $data['brands'] = Brand::active()->select('id')->get();
         $data['tags'] = Tag::select('id')->get();
         $data['categories'] = Category::mainselect()->select('id')->get();
-         return $product;
-        return view($this->model_view_folder.'.edit', compact('title','product'), $data);
+        return view($this->model_view_folder.'.edit', $data);
+    }
+
+    // update product info in database
+    public function update(UpdateProduct $request, $id)
+    {
+        // dd($request->all());
+        // try {
+        // //validation
+        // //update DB
+        //     $product = Product::find($id);
+        //     if (!$product)
+        //     return redirect()->route('admin.products')->with(['error' => 'هذا القسم غير موجود']);
+        //     if (!$request->has('is_active'))
+        //     $request->request->add(['is_active' => 0]);
+        //     else
+        //     $request->request->add(['is_active' => 1]);
+        //     $product->update($request->all());
+        //     //save translations
+        //     //save translations
+        //     $product->name = $request->name;
+        //     $product->description = $request->description;
+        //     $product->short_description = $request->short_description;
+        //     $product->save();
+        //     //save product categories
+        //     ;
+        //     $product->categories()->attach($request->category_id);
+        //     $product->tags()->attach($request->tags);
+        //     return redirect()->route('admin.products')->with(['success' => 'تم ألتحديث بنجاح']);
+        // } catch (\Exception $ex) {
+        //     return redirect()->route('admin.products')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        // }
     }
 
     //to save images to folder only
@@ -102,9 +135,14 @@ class ProductController extends Controller
 
     //to delete images from folder only
     public function deleteImages(Request $request) {
-        deleteImage('uploads/products/',$request->fileName);
+        // if($request->has('fid')){
+        //     $img = Image::find($request->fid);
+        //     $img?$img->delete():'';
+        // }
+        // deleteImage('uploads/products/',$request->fileName);
     }
 
+    // insert images in database
     public function createImages($id, $files){
         foreach($files as $file){
             Image::Create([
@@ -115,50 +153,8 @@ class ProductController extends Controller
     }
 
 
-    
-   
-   
-    // public function edit($id)
-    // {
-    // //get specific categories and its translations
-    //     $data = [];
-    //     $data['product'] = Product::orderBy('id', 'DESC')->find($id);
-    //     $data['brands'] = Brand::active()->select('id')->get();
-    //     $data['tags'] = Tag::select('id')->get();
-    //     $data['categories'] = Category::active()->select('id')->get();
-    //     if (!$data['product'])
-    //     return redirect()->route('admin.products')->with(['error' => 'هذا القسم غير موجود ']);
-    //     return view('admin.products.general.edit', $data);
-    //     }
-        public function update($id, Request $request)
-        {
-            dd($request->all());
-            try {
-            //validation
-            //update DB
-            $product = Product::find($id);
-            if (!$product)
-            return redirect()->route('admin.products')->with(['error' => 'هذا القسم غير موجود']);
-            if (!$request->has('is_active'))
-            $request->request->add(['is_active' => 0]);
-            else
-            $request->request->add(['is_active' => 1]);
-            $product->update($request->all());
-            //save translations
-            //save translations
-            $product->name = $request->name;
-            $product->description = $request->description;
-            $product->short_description = $request->short_description;
-            $product->save();
-            //save product categories
-            ;
-            $product->categories()->attach($request->category_id);
-            $product->tags()->attach($request->tags);
-            return redirect()->route('admin.products')->with(['success' => 'تم ألتحديث بنجاح']);
-            } catch (\Exception $ex) {
-            return redirect()->route('admin.products')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-            }
-        }
+
+
     //     public function destroy($id)
     //     {
     //     try {

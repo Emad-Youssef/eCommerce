@@ -67,4 +67,12 @@ class Product extends Model
       return $q->with(['images:id,product_id,img','categories:id','tags:id']);
     }
 
+    public function special_priceDate($val){
+        return $this->$val !== null?$this->$val->format('Y-m-d'):'';
+    }
+
+    public function formatPrice($price){
+        return str_replace(',', '', number_format($this->$price));
+    }
+
 }
