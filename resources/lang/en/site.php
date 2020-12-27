@@ -114,6 +114,7 @@ return [
     'can_upload_more' => 'You can upload more than one image here',
     'images'    => 'Images',
     'img_problem_found' => 'The image is not found, a problem occurred during the upload',
+    'old_images_product' => 'Old product photos',
     // datatables
     'id'                    => 'Index',
     'action'                => 'Control',

@@ -23,8 +23,8 @@
        <div class="col-md-6">
             <label for="projectinput1">@lang('site.in_stock')</label>
             <select class="form-control select2" name="in_stock">
-                    <option value="1" {{isset($product)&&$product->in_stock == 0?'selected':''}}>@lang('site.available')</option>
                     <option value="0" {{isset($product)&&$product->in_stock == 0?'selected':''}}>@lang('site.unavailable')</option>
+                    <option value="1" {{isset($product)&&$product->in_stock == 0?'selected':''}}>@lang('site.available')</option>
             </select>
             <p id="error-in_stock" class="error-content text-danger"></p>
         </div>

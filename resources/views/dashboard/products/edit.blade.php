@@ -63,12 +63,12 @@
                                         @csrf
                                         {{ method_field('put') }}
                                         <input type="hidden" value="{{$product->id}}">
-                                        @include('dashboard.products.form_wizard._images')
                                         @include('dashboard.products.form_wizard._translations')
                                         @include('dashboard.products.form_wizard._general_information')
                                         @include('dashboard.products.form_wizard._price')
                                         @include('dashboard.products.form_wizard._stock')
-                                        <div class="form-actions">
+                                        @include('dashboard.products.form_wizard._images')
+                                        <!-- <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                 onclick="history.back();">
                                                 <i class="ft-x"></i> @lang('site.retreat')
@@ -76,7 +76,7 @@
                                             <button type="submit" disabled="true" class="btn btn-primary mr-1">
                                                 <i class="ft-check"></i> @lang('site.save')
                                             </button>
-                                        </div>
+                                        </div> -->
                                     </form>
                                 </div>
                             </div>

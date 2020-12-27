@@ -41,7 +41,7 @@ class UpdateProduct extends FormRequest
             'manage_stock'  => 'required|in:0,1',
             'in_stock'  => 'required|in:0,1',
             'qty'  => 'nullable|required_if:manage_stock,==,1',
-            'images'  => 'required_without:old_images|array|min:1',
+            'images'  => 'nullable|required_without:old_images|array|min:1',
             'images.*'  => [new CheckImage('uploads/products/')],
         ];
 
@@ -73,6 +73,7 @@ class UpdateProduct extends FormRequest
             'in_stock'      => __('site.in_stock'),
             'qty'      => __('site.qty'),
             'images'      => __('site.images'),
+            'old_images'    =>  __('site.old_images_product'),
         ];
 
         foreach(config('translatable.locales') as $locale){

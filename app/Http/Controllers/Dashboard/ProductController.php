@@ -58,7 +58,7 @@ class ProductController extends Controller
                 $product->categories()->attach($request->categories);
                 $product->tags()->attach($request->tags);
                 // save images in database
-                 $this->createImages($product->id,$request->images);
+                $this->createImages($product->id,$request->images);
             }
 
             DB::commit();
@@ -96,31 +96,30 @@ class ProductController extends Controller
     public function update(UpdateProduct $request, $id)
     {
         // dd($request->all());
-        // try {
-        // //validation
-        // //update DB
-        //     $product = Product::find($id);
-        //     if (!$product)
-        //     return redirect()->route('admin.products')->with(['error' => 'هذا القسم غير موجود']);
-        //     if (!$request->has('is_active'))
-        //     $request->request->add(['is_active' => 0]);
-        //     else
-        //     $request->request->add(['is_active' => 1]);
-        //     $product->update($request->all());
-        //     //save translations
-        //     //save translations
-        //     $product->name = $request->name;
-        //     $product->description = $request->description;
-        //     $product->short_description = $request->short_description;
-        //     $product->save();
-        //     //save product categories
-        //     ;
-        //     $product->categories()->attach($request->category_id);
-        //     $product->tags()->attach($request->tags);
-        //     return redirect()->route('admin.products')->with(['success' => 'تم ألتحديث بنجاح']);
-        // } catch (\Exception $ex) {
-        //     return redirect()->route('admin.products')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-        // }
+        $product = Product::find($id);
+        if(!$product){
+            return session()->flash('error', __('messages.this_item_does_not_exist'));   
+        }
+        try {
+            DB::beginTransaction();
+            $product->update($request->except('_token','categories','tags','old_images','images'));
+            if($product){
+                $product->categories()->sync($request->categories);
+                $product->tags()->sync($request->tags);
+                // save images in database
+                if($request->images)
+                 $this->createImages($product->id,$request->images);
+            }
+            DB::commit();
+            session()->flash('success', __('messages.updateed_successfully'));
+            return response()->json([
+                'route' => route('admin.products.index')
+            ]);
+
+        }catch (\Exception $exception){
+            DB::rollback();
+            return session()->flash('error', __('messages.general_error'));
+        }
     }
 
     //to save images to folder only
@@ -135,11 +134,11 @@ class ProductController extends Controller
 
     //to delete images from folder only
     public function deleteImages(Request $request) {
-        // if($request->has('fid')){
-        //     $img = Image::find($request->fid);
-        //     $img?$img->delete():'';
-        // }
-        // deleteImage('uploads/products/',$request->fileName);
+        if($request->has('fid')){
+            $img = Image::find($request->fid);
+            $img?$img->delete():'';
+        }
+        deleteImage('uploads/products/',$request->fileName);
     }
 
     // insert images in database

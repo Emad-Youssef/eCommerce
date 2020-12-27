@@ -114,6 +114,7 @@ return [
     'can_upload_more' => 'يمكنك رفع اكثر من صوره هنا',
     'images' => 'الصور',
     'img_problem_found'  => 'لم يتم العثور على الصورة ، حدثت مشكلة أثناء الرفع',
+    'old_images_product' => 'صور النتج القديمه',
     // datatables
     'id'                    => 'التسلسل',
     'action'                => 'التحكم',
