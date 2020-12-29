@@ -61,9 +61,19 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 				Route::post('/store', 'ProductController@store')->name('products.store');
 				Route::get('/edit/{id}', 'ProductController@edit')->name('products.edit');
 				Route::put('/update/{id}', 'ProductController@update')->name('products.update');
+				Route::post('/is_active/{id}', 'ProductController@is_active')->name('products.is_active');
 				Route::post('/destroy/{id}', 'ProductController@destroy')->name('products.destroy');
 			});
 			######################### products routes #############
+
+			######################### product properties #############
+			Route::resource('/properties', 'PropertyController');
+			######################### product properties #############
+			
+			######################### Option properties #############
+			Route::resource('/options', 'OptionController');
+			######################### Option properties #############
+			
 
 			######################### settings routes #############
 			Route::group(['prefix' => 'settings'], function() {

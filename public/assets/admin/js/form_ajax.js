@@ -74,6 +74,29 @@ $(document).on('click','.delete',function(){
     });
 });
 
+// is active
+$(document).on('submit','.is_active', function(e) {
+    e.preventDefault()
+    var route = $(this).data('action');
+    var dataSend = new FormData(this);
+    $.ajax({
+        url     : route,
+        type    : 'post',
+        data    : dataSend,
+        dataType:'json',
+        processData: false,
+        contentType: false,
+        cache: false,
+        success : function(data){
+            console.log(data.message)
+            $('.table-responsive .table').DataTable().ajax.reload();
+        },
+        error: function (errors){
+            alert(errors.status+" error")
+        }
+    })
+});
+
 
 // Wizard tabs with numbers setup
 var formProduct = $(".number-tab-steps");

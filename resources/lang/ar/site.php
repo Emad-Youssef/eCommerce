@@ -115,6 +115,12 @@ return [
     'images' => 'الصور',
     'img_problem_found'  => 'لم يتم العثور على الصورة ، حدثت مشكلة أثناء الرفع',
     'old_images_product' => 'صور النتج القديمه',
+    // properties
+    'properties' => 'الخصائص',
+    'show_properties' => 'عرض الخصائص',
+    'property' => 'خاصية',
+    'add_property' => 'أضافة خاصية',
+    'edit_property' => 'تعديل خاصية',
     // datatables
     'id'                    => 'التسلسل',
     'action'                => 'التحكم',

@@ -115,6 +115,12 @@ return [
     'images'    => 'Images',
     'img_problem_found' => 'The image is not found, a problem occurred during the upload',
     'old_images_product' => 'Old product photos',
+    // properties
+    'properties' => 'Properties',
+    'show_properties' => 'Show Properties',
+    'property' => 'Property',
+    'add_property' => 'Create Property',
+    'edit_property' => 'Edit Property',
     // datatables
     'id'                    => 'Index',
     'action'                => 'Control',

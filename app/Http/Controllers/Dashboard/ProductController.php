@@ -35,7 +35,6 @@ class ProductController extends Controller
         return $product->render($this->model_view_folder.'.index');
     }
 
-
     public function create()
     {
         $title = __('site.add_product');
@@ -122,6 +121,48 @@ class ProductController extends Controller
         }
     }
 
+    // update product info in database
+    public function is_active(Request $request, $id)
+    {
+        $product = Product::find($id);
+        if(!$product){
+            return session()->flash('error', __('messages.this_item_does_not_exist'));   
+        }
+        try {
+            if($request->is_active == 1 ||  $request->is_active == 0){
+                $product->update([
+                   'is_active' => $request->is_active
+                ]);
+                return response()->json([
+                    'message' =>  __('messages.updateed_successfully')
+                ]);
+            }
+        }catch (\Exception $exception){
+            return session()->flash('error', __('messages.general_error'));
+        }
+    }
+
+    // forceDelete from database
+    public function destroy($id)
+    {
+        try {
+            $product = Product::find($id);
+            if ($product){
+                $images = $product->images;
+                $brand->forceDelete();
+                //helper function
+                foreach($images as $img){
+                    deleteImage('uploads/products/',$img);   
+                }
+            }
+            return response()->json([
+                'message' => __('messages.deleted_successfully')
+            ]);
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.products')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
+
     //to save images to folder only
     public function uploadImages(Request $request) {
         $file = $request->file('dzfile');
@@ -150,49 +191,4 @@ class ProductController extends Controller
             ]);
         }
     }
-
-
-
-
-    //     public function destroy($id)
-    //     {
-    //     try {
-    //     //get specific categories and its translations
-    //     $products = Product::orderBy('id', 'DESC')->find($id);
-    //     if (!$products)
-    //     return redirect()->route('admin.products')->with(['error' => 'هذا القسم غير موجود ']);
-    //     $image = Str::after($products->photo, '/assets');
-    //     $image = base_path('public/assets/' . $image);
-    //     unlink($image);
-    //     $products->delete();
-    //     return redirect()->route('admin.products')->with(['success' => 'تم الحذف بنجاح']);
-    //     } catch (\Exception $ex) {
-    //     return redirect()->route('admin.products')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-    //     }
-    //     }
-    //     public function createSlug($title, $id = 0)
-    //     {
-    //     $slug = str_replace(' ', '-', $title);
-    //     $allSlugs = $this->getRelatedSlugs($slug, $id);
-    //     if (!$allSlugs->contains('slug', $slug)) {
-    //     return $slug;
-    //     }
-    //     $i = 1;
-    //     $is_contain = true;
-    //     do {
-    //     $newSlug = $slug . '-' . $i;
-    //     if (!$allSlugs->contains('slug', $newSlug)) {
-    //     $is_contain = false;
-    //     return $newSlug;
-    //     }
-    //     $i++;
-    //     } while ($is_contain);
-    // }
-    // protected function getRelatedSlugs($slug, $id = 0)
-    // {
-    // return Category::select('slug')->where('slug', 'like', $slug . '%')
-    // ->where('id', '<>', $id)
-    // ->get();
-    // }
-     /** End slug functions */
-    }
+}

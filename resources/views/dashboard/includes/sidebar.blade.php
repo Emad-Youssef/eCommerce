@@ -83,14 +83,25 @@
         </li>
          <!-- products -->
          <li class=" nav-item"><a href="#"><i class="la la-sitemap"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.products') }}</span></a>
-          <ul class="menu-content">
-            <li class="{{Request::is('*/products')?'active':''}}"><a class="menu-item" href="{{ route('admin.products.index') }}">{{ __('site.show_products') }}</a>
-            </li>
-            <li class="{{Request::is('*/products/create')?'active':''}}"><a class="menu-item" href="{{ route('admin.products.create') }}" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_product') }}</a>
-            </li>
-          
-          </ul>
-        </li>
+            <ul class="menu-content">
+              <li class="{{Request::is('*/products')?'active':''}}"><a class="menu-item" href="{{ route('admin.products.index') }}">{{ __('site.show_products') }}</a>
+              </li>
+              <li class="{{Request::is('*/products/create')?'active':''}}"><a class="menu-item" href="{{ route('admin.products.create') }}" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_product') }}</a>
+              </li>
+            
+            </ul>
+          </li>
+
+          <!-- properties -->
+          <li class=" nav-item"><a href="#"><i class="la la-pie-chart"></i><span class="menu-title" data-i18n="nav.templates.main">{{ __('site.properties') }}</span></a>
+            <ul class="menu-content">
+              <li class="{{Request::is('*/properties')?'active':''}}"><a class="menu-item" href="{{ route('admin.properties.index') }}">{{ __('site.show_properties') }}</a>
+              </li>
+              <li class="{{Request::is('*/properties/create')?'active':''}}"><a class="menu-item" href="{{ route('admin.properties.create') }}" data-i18n="nav.templates.vert.compact_menu">{{ __('site.add_property') }}</a>
+              </li>
+            
+            </ul>
+          </li>
       </ul>
     </div>
   </div>
