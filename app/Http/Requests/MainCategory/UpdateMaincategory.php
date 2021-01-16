@@ -41,9 +41,10 @@ class UpdateMaincategory extends FormRequest
         ];
 
         foreach(config('translatable.locales') as $locale){
-            $rules[$locale.'.name'] = 'required|string|max:50';
+            $attributes[$locale.'.name'] = __('site.name_'.$locale);
         }
 
         return $attributes;
+
     }
 }

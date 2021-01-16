@@ -41,7 +41,7 @@ class SubCategoryController extends Controller
     {
         $title = __('site.add_subCategory');
         // mainselect scope form model
-        $maincategories = Category::mainselect()->get();
+        $maincategories = Category::mainselect()->active()->select('id')->get();
         return view($this->model_view_folder.'.create', compact('title','maincategories'));
     }
 
@@ -92,7 +92,7 @@ class SubCategoryController extends Controller
     {
         $title = __('site.edit_subCategory');
         // mainselect scope form model
-        $maincategories = Category::mainselect()->get();
+        $maincategories = Category::mainselect()->active()->select('id')->get();
         $category = Category::whereNotNull('parent_id')->find($id);
         if(!$category){
             session()->flash('error', __('messages.this_item_does_not_exist'));

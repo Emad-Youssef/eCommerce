@@ -19,4 +19,13 @@ return [
     'general_error'    => 'Something went wrong, please try again later',
     'this_item_does_not_exist'  => 'This item does not exist',
     'msdelete'  => 'Are you sure you want to delete?',
+
+    // Dropzone
+
+    'dictFallbackMessage' => 'Your browser does not support the number of images, clouds and buses',
+    'dictInvalidFileType' => 'You cannot upload this type of file',
+    'dictCancelUpload' => 'Cancel the upload',
+    'dictCancelUploadConfirmation' => 'Are you sure to cancel uploading files?',
+    'dictRemoveFile' => 'delete picture',
+    'dictMaxFilesExceeded' => 'You cannot raise more numbers',
 ];

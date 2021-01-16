@@ -72,7 +72,6 @@
                                             </div>
 
                                             <div class="row">
-
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="projectinput1">@lang('site.value')</label>

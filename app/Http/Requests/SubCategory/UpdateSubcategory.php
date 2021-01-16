@@ -24,7 +24,7 @@ class UpdateSubcategory extends FormRequest
     public function rules()
     {
         $rules = [
-            'parent_id' => 'required',
+            'parent_id' => 'required|exists:categories,id',
             'slug'  => ['required', 'string', 'max:80', 'regex:/(^([a-zA-Z0-9-]+)(\d+)?$)/u','unique:categories,slug,'.$this->id]
         ];
 
@@ -40,10 +40,10 @@ class UpdateSubcategory extends FormRequest
         $attributes = [
             'parent_id'      => __('site.mainCategory'),
             'slug'      => __('site.slug')
-        ];
-
+        ];   
+        
         foreach(config('translatable.locales') as $locale){
-            $rules[$locale.'.name'] = 'required|string|max:50';
+            $attributes[$locale.'.name'] = __('site.name_'.$locale);
         }
 
         return $attributes;

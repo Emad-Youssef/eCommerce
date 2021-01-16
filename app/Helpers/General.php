@@ -1,14 +1,11 @@
 <?php
 
-
-use App\Models\Category;
-
-// get parent category for subcategories in datatables
-if(!function_exists('getParent')){
-    function getParent($id){
-      $parent = Category::select(['id','slug'])->find($id);
-      return $parent->name;
-    }
+// dir style
+if(!function_exists('getFolder')){
+  function getFolder()
+  {
+      return app()->getLocale() == 'ar' ? 'css-rtl' : 'css';
+  }
 }
 
 // upload file
@@ -28,4 +25,16 @@ if(!function_exists('deleteImage')){
           return \File::delete(public_path($path.$file));
   }
 
+}
+
+// for edit product form
+if(!function_exists('selectRelationship')){
+  function selectRelationship($array, $id){
+    $relationship_array =  [];
+    foreach($array as $rel){
+        $relationship_array[] = $rel->id;
+    }
+    return in_array($id,$relationship_array)?'selected':'' ;
+  
+  }
 }

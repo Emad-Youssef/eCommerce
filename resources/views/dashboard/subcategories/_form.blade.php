@@ -3,7 +3,7 @@
         {{ $title }}</h4>
     <div class="row">
         <div class="col-md-6">
-            <label><i class="fa fa-user"></i>@lang('site.main_categories')</label>
+            <label><i class="la la-folder-open-o"></i>@lang('site.main_categories')</label>
             <select class="form-control  border-msg" name="parent_id" id="parent_id" required>
                 <option value="">@lang('site.choose')</option>
                 @foreach($maincategories as $cate)
@@ -12,7 +12,7 @@
                     @if(count($cate->subcategories))
                         @foreach($cate->subcategories as $index =>$subcate)
                             <option value="{{$subcate->id}}" {{ isset($category)&&$subcate->id == $category->parent_id?'selected':'' }} style="font-weight: 600;">
-                            -{{$subcate->name}}</option>
+                            &#160;&#160;-{{$subcate->name}}</option>
                             @if(count($subcate->subcategories))
                                 @include('dashboard.subcategories.sub_category_list',['subcategories' => $subcate->subcategories])
                             @endif

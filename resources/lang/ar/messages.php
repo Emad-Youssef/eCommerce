@@ -20,4 +20,13 @@ return [
     'this_item_does_not_exist'  => 'هذا العنصر غير موجود',
     'msdelete'  => 'هل انت متاكد من الحذف ؟',
 
+    // Dropzone
+
+    'dictFallbackMessage' => 'المتصفح الخاص بكم لا يدعم خاصيه تعدد الصور والسحب والافلات',
+    'dictInvalidFileType' => 'لا يمكنك رفع هذا النوع من الملفات',
+    'dictCancelUpload' => 'الغاء الرفع',
+    'dictCancelUploadConfirmation' => ' هل انت متاكد من الغاء رفع الملفات ؟ ',
+    'dictRemoveFile' => 'حذف الصوره',
+    'dictMaxFilesExceeded' => 'لايمكنك رفع عدد اكثر',
+
 ];

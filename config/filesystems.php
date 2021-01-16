@@ -58,6 +58,15 @@ return [
         'brands' => [
             'driver' => 'local',
             'root' => public_path('uploads/brands'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        'products' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/products'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
         ],
 
         's3' => [

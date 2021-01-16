@@ -174,8 +174,8 @@
 	});
 
 	// Lock selectize
-	$('.selectize-locked').selectize({create: true});
-	$('.selectize-locked')[0].selectize.lock();
+	// $('.selectize-locked').selectize({create: true});
+	// $('.selectize-locked')[0].selectize.lock();
 
 	// Sort select options
 	$('.selectize-sort').selectize({

@@ -8,19 +8,6 @@
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-// Wizard tabs with numbers setup
-$(".number-tab-steps").steps({
-    headerTag: "h6",
-    bodyTag: "fieldset",
-    transitionEffect: "fade",
-    titleTemplate: '<span class="step">#index#</span> #title#',
-    labels: {
-        finish: 'Submit'
-    },
-    onFinished: function (event, currentIndex) {
-        alert("Form submitted.");
-    }
-});
 
 // Wizard tabs with icons setup
 $(".icons-tab-steps").steps({

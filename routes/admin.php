@@ -43,14 +43,49 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 			Route::resource('/subCategory', 'SubCategoryController');
 			########################## SubCategory #######
 
-			########################## barnds ####
+			########################## brands ####
 			Route::resource('/brands', 'BrandController');
-			########################## barnds #######
+			########################## brands #######
 
 			########################## tags ####
 			Route::resource('/tags', 'TagController');
 			########################## tags #######
 
+			######################### products routes #############
+			Route::group(['prefix' => 'products'], function() {
+				// products routs
+				Route::get('/', 'ProductController@index')->name('products.index');
+				Route::post('/uploadImages', 'ProductController@uploadImages')->name('products.uploadImages');
+				Route::post('/deleteImages', 'ProductController@deleteImages')->name('products.deleteImages');
+				Route::get('/create', 'ProductController@create')->name('products.create');
+				Route::post('/store', 'ProductController@store')->name('products.store');
+				Route::get('/edit/{id}', 'ProductController@edit')->name('products.edit');
+				Route::put('/update/{id}', 'ProductController@update')->name('products.update');
+				Route::post('/is_active/{id}', 'ProductController@is_active')->name('products.is_active');
+				Route::any('/destroy/{id}', 'ProductController@destroy')->name('products.destroy');
+				Route::any('/forcedelete/{id}', 'ProductController@forcedelete')->name('products.forcedelete');
+
+			});
+			######################### products routes #############
+
+			######################### product properties #############
+			Route::resource('/properties', 'PropertyController');
+			######################### product properties #############
+			
+			######################### Option properties #############
+			Route::resource('/options', 'OptionController');
+			######################### Option properties #############
+
+			######################### search #############
+			Route::group(['prefix' => 'search'], function() {
+				// search product
+				Route::get('/product', 'SearchController@product')->name('search.product');
+				// property
+				Route::get('/property', 'SearchController@property')->name('search.property');
+				
+			});
+			######################### search #############
+			
 			######################### settings routes #############
 			Route::group(['prefix' => 'settings'], function() {
 				// shipping routs
@@ -59,8 +94,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 			});
 			######################### settings routes #############
 		});
-		
-	
 	}); 
 });
 
