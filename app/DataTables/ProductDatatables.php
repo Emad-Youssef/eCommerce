@@ -39,7 +39,8 @@ class ProductDatatables extends DataTable
     {
         $products = ProductTranslation::join('products', 'product_translations.product_id', '=', 'products.id')
         ->select(['products.id','products.is_active','products.price','products.selling_price', 'product_translations.*'])
-        ->where('product_translations.locale', App::getLocale());
+        ->where('product_translations.locale', App::getLocale())
+        ->where('products.deleted_at', null);
 
         return $this->applyScopes($products);
     }

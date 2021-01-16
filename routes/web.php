@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
     Route::get('/', function () {
         return view('welcome');
+    });
+
+    Route::get('/config-cache', function() {
+        $status = Artisan::call('config:cache');
+        return '<h1>Configurations cache cleared</h1>';
     });
 
 });

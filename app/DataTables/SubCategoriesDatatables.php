@@ -26,7 +26,7 @@ class SubCategoriesDatatables extends DataTable
             ->addColumn('action', 'dashboard.subcategories.datatables.action')
             ->addColumn('parent_name', 'dashboard.subcategories.datatables.parent_name')
             ->addColumn('is_active', 'dashboard.subcategories.datatables.is_active')
-            ->rawColumns(['action','is_active']);
+            ->rawColumns(['action','parent_name','is_active']);
     }
 
     /**

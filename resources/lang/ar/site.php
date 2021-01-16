@@ -40,6 +40,7 @@ return [
     'choose'        => 'أختر',
     'previous'  => 'السابق',
     'next'      => 'التالي',
+    'forcedelete' => 'حذف نهائي',
     // shipping 
     'settings'  => 'الأعدادات',
     'shipping'  => 'الشحن',
@@ -121,6 +122,13 @@ return [
     'property' => 'خاصية',
     'add_property' => 'أضافة خاصية',
     'edit_property' => 'تعديل خاصية',
+    // options
+    'options' => 'الأختيارات',
+    'option' => 'أختيار',
+    'show_options' => 'عرض الأختيارات',
+    'add_option' => 'أضافة أختيار',
+    'edit_option' => 'تعديل أختيار',
+
     // datatables
     'id'                    => 'التسلسل',
     'action'                => 'التحكم',

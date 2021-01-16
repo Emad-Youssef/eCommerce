@@ -63,6 +63,10 @@ class Product extends Model
         return $this->belongsToMany('App\Models\Tag','product_tags');
     }
 
+    public function options(){
+        return $this->hasMany('App\Models\Option', 'product_id');
+    }
+
     public function scopeSelection($q){
       return $q->with(['images:id,product_id,img','categories:id','tags:id']);
     }

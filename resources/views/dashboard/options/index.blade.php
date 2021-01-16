@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', __('site.properties'))
+@section('title', __('site.options'))
 @push('head')
     <link rel="stylesheet" href="{{asset('assets/admin/vendors/css/tables/datatable/jquery.dataTables.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/admin/vendors/css/tables/datatable/dataTables.bootstrap4.min.css')}}" />
@@ -10,13 +10,13 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">@lang('site.show_properties')</h3>
+                    <h3 class="content-header-title">@lang('site.show_options')</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.home')}}">{{__('site.homepage')}}</a>
                                 </li>
-                                <li class="breadcrumb-item active">@lang('site.properties')
+                                <li class="breadcrumb-item active">@lang('site.options')
                                 </li>
                             </ol>
                         </div>

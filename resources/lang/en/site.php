@@ -46,6 +46,7 @@ return [
     'choose'        => 'Choose',
     'previous'      => 'Previous',
     'next'          => 'Next',
+    'forcedelete'  => 'Force delete',
     // shipping 
     'settings'  => 'Settings',
     'shipping'  => 'Shipping',
@@ -121,6 +122,12 @@ return [
     'property' => 'Property',
     'add_property' => 'Create Property',
     'edit_property' => 'Edit Property',
+    // options
+    'options' => 'Options',
+    'option' => 'Option',
+    'show_options' => 'Show Options',
+    'add_option' => 'Create Option',
+    'edit_option' => 'Edit Option',
     // datatables
     'id'                    => 'Index',
     'action'                => 'Control',

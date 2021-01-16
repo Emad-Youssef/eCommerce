@@ -15,6 +15,13 @@
             data-no="{{ __('site.no') }}"
             class="dropdown-item btn btn-outline-danger delete">
             <i class="la la-trash"></i> @lang('site.delete')</a>
+            <a data-route="{{ route('admin.products.forcedelete',$product_id) }}"
+            data-token="{{ csrf_token() }}"
+            data-msdelete="{{ __('messages.msdelete') }}"
+            data-yes="{{ __('site.yes') }}"
+            data-no="{{ __('site.no') }}"
+            class="dropdown-item btn btn-outline-danger delete">
+            <i class="la la-trash"></i> @lang('site.forcedelete')</a>
 
     </div>
 

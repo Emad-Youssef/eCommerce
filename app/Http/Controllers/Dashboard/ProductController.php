@@ -142,22 +142,42 @@ class ProductController extends Controller
         }
     }
 
-    // forceDelete from database
+    // delete from database
     public function destroy($id)
     {
         try {
             $product = Product::find($id);
-            if ($product){
-                $images = $product->images;
-                $brand->forceDelete();
-                //helper function
-                foreach($images as $img){
-                    deleteImage('uploads/products/',$img);   
-                }
+            if(!$product){
+                return session()->flash('error', __('messages.this_item_does_not_exist'));   
+            }
+            $product->delete();
+            return response()->json([
+                'message' => __('messages.deleted_successfully')
+            ]);
+            
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.products')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
+
+    // forceDelete from database
+    public function forcedelete($id)
+    {
+        try {
+            $product = Product::find($id);
+            if(!$product){
+                return session()->flash('error', __('messages.this_item_does_not_exist'));   
+            }
+            $images = $product->images;
+            $product->forceDelete();
+            // helper function
+            foreach($images as $img){
+                deleteImage('uploads/products/',$img->img);  
             }
             return response()->json([
                 'message' => __('messages.deleted_successfully')
             ]);
+            
         } catch (\Exception $ex) {
             return redirect()->route('admin.products')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }

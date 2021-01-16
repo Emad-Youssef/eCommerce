@@ -13,5 +13,8 @@ class Property extends Model implements TranslatableContract
     protected $with = ['translations'];
 
     public $translatedAttributes = ['name'];
-    // protected $fillable = ['slug'];
+
+    public function options(){
+        return $this->hasMany('App\Models\Option', 'property_id');
+    }
 }

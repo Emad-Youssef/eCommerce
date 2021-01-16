@@ -70,7 +70,7 @@
                                         @include('dashboard.products.form_wizard._stock')
                                         @include('dashboard.products.form_wizard._images')
                                        
-                                        <div class="form-actions">
+                                        <!-- <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                 onclick="history.back();">
                                                 <i class="ft-x"></i> @lang('site.retreat')
@@ -78,7 +78,7 @@
                                             <button type="submit" disabled="true" class="btn btn-primary mr-1">
                                                 <i class="ft-check"></i> @lang('site.save')
                                             </button>
-                                        </div>
+                                        </div> -->
                                     </form>
                                 </div>
                             </div>

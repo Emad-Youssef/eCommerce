@@ -1,14 +1,12 @@
 @extends('layouts.admin')
 @section('title', $title)
 @push('style')
-    <style>
-        .has_error{
-            border: 1px solid red !important;
-        }
-        #arname {
-            direction: rtl;
-        }
-    </style>
+<link rel="stylesheet" href="{{asset('assets/admin/js/select2/css/select2.min.css')}}">
+<style>
+    .has_error{
+        border: 1px solid red !important;
+    }
+</style>
 @endpush
 @section('content')
 <div class="app-content content">
@@ -20,7 +18,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}">{{__('site.homepage')}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.properties.index')}}">{{__('site.properties')}}</a>
+                            <li class="breadcrumb-item"><a href="{{route('admin.options.index')}}">{{__('site.options')}}</a>
                             </li>
                             <li class="breadcrumb-item active"> {{$title}}
                             </li>
@@ -51,11 +49,11 @@
                                 <div class="card-body">
                                     @include('dashboard.includes.alerts.success')
                                     @include('dashboard.includes.alerts.error')
-                                    <form id="form-ajax" class="form" data-action="{{ route('admin.properties.store') }}" method="POST"
+                                    <form id="form-ajax" class="form" data-action="{{ route('admin.options.store') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
 
-                                        @include('dashboard.properties._form')
+                                        @include('dashboard.options._form')
                                         <div class="form-actions">
                                             <button type="button" class="btn btn-warning mr-1"
                                                 onclick="history.back();">
@@ -81,5 +79,61 @@
 @endsection
 
 @push('script')
+<!-- Select2 -->
 <script src="{{asset('assets/admin/js/form_ajax.js')}}"></script>
+<script src="{{asset('assets/admin/js/select2/js/select2.full.min.js')}}"></script>
+<script>
+    $('#product-search').select2({
+        ajax: {
+            url: "{{ route('admin.search.product') }}",
+            type: 'GET',
+            dataType: 'json',
+            data: function (query) {
+                var query =  {
+                    q: query.term, // search term
+                };
+                return  query;
+            },
+            processResults: function (data) {
+                return {
+                results: $.map(data.products, function (item) {
+                    // return console.log(item.name)
+                    return {
+                        text: item.name,
+                        id: item.product_id
+                    }
+                })
+            };
+            },
+    
+        },
+    });
+
+    $('#property-search').select2({
+        ajax: {
+            url: "{{ route('admin.search.property') }}",
+            type: 'GET',
+            dataType: 'json',
+            data: function (query) {
+                var query =  {
+                    q: query.term, // search term
+                };
+                return  query;
+            },
+            processResults: function (data) {
+                // return console.log(data.property)
+                return {
+                results: $.map(data.property, function (item) {
+                    // return console.log(item.name)
+                    return {
+                        text: item.name,
+                        id: item.property_id
+                    }
+                })
+            };
+            },
+    
+        },
+    });
+</script>
 @endpush
